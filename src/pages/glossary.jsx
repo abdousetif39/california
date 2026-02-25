@@ -2,26 +2,7 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 
 export default function Glossary() {
-{
-    term: "Proposition 19",
-    definition: "A law passed in 2020 that changed the rules for tax basis transfers. It allows homeowners who are over 55, severely disabled, or victims of wildfires to transfer their primary residence's tax base to a replacement home of any value anywhere in California."
-},
-{
-    term: "District Tax",
-    definition: "These are voter-approved local taxes added to the statewide base sales tax rate. They fund specific local projects like transportation, parks, or emergency services. This is why sales tax in Los Angeles (9.5%) is higher than the state minimum."
-},
-{
-    term: "Homeowners' Exemption",
-    definition: "In California, if you own and occupy a dwelling as your principal place of residence, you may be eligible for a $7,000 reduction in the assessed value of the property, which typically saves about $70 annually on property taxes."
-},
-{
-    term: "Supplemental Property Tax",
-    definition: "A one-time tax bill issued when a property is sold or new construction is completed. It covers the difference between the old assessed value and the new one for the remainder of the fiscal year."
-},
-{
-    term: "Direct Assessments",
-    definition: "Non-ad valorem charges on a property tax bill that are not based on the property's value. Examples include fees for sewer service, flood control, or lighting districts. These are often why a tax bill exceeds the base 1% rate."
-}
+    // هذه هي المصفوفة التي تحتوي على جميع المصطلحات
     const terms = [
         {
             term: "Ad Valorem Tax",
@@ -41,7 +22,27 @@ export default function Glossary() {
         },
         {
             term: "Mello-Roos",
-            definition: "A special tax district in California where real estate developers or entities issue bonds to fund local infrastructure, repaid by property owners in that district."
+            definition: "A special tax district in California where real estate developers or entities issue bonds to fund local infrastructure, repaid by property owners."
+        },
+        {
+            term: "Proposition 19",
+            definition: "A law passed in 2020 that allows homeowners over 55, disabled, or wildfire victims to transfer their tax base to a replacement home anywhere in California."
+        },
+        {
+            term: "District Tax",
+            definition: "Local taxes added to the statewide base sales tax rate to fund specific local projects like transportation or emergency services."
+        },
+        {
+            term: "Homeowners' Exemption",
+            definition: "A $7,000 reduction in the assessed value for owner-occupied residences, typically saving about $70 annually on property taxes."
+        },
+        {
+            term: "Supplemental Property Tax",
+            definition: "A one-time tax bill issued after a property sale to cover the difference between the old and new assessed values for the rest of the year."
+        },
+        {
+            term: "Direct Assessments",
+            definition: "Non-ad valorem charges on a property tax bill for specific services like sewer or lighting, not based on the property's market value."
         }
     ];
 
