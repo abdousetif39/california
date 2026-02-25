@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import * as Icons from '../components/Icons';
 
 export default function Contact() {
     return (
         <Layout>
             <Head>
                 <title>Contact Us | California Tax Calculators</title>
-                <meta name="description" content="Have questions or feedback? Contact the California Tax Calculators team. We are here to help you with your tax estimation needs." />
+                <meta name="description" content="Have questions or feedback? Contact the California Tax Calculators team." />
                 <link rel="canonical" href="https://californiataxcalculators.com/contact" />
             </Head>
 
@@ -22,23 +21,23 @@ export default function Contact() {
                 <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 p-10">
                     <h2 className="text-2xl font-bold text-slate-900 mb-8">Send us an Email</h2>
                     
-                    <div className="flex items-center gap-6 p-6 bg-slate-50 rounded-2xl border border-slate-200 mb-10">
-                        <div className="bg-blue-600 p-4 rounded-full text-white">
-                            <Icons.EmailIcon /> 
+                    <div className="flex items-center gap-6 p-6 bg-slate-50 rounded-2xl border border-slate-200 mb-10 text-slate-900">
+                        <div className="bg-blue-600 p-4 rounded-full text-white text-2xl">
+                            📧 
                         </div>
                         <div>
                             <p className="text-sm text-slate-500 uppercase font-bold tracking-wider">Email Address</p>
-                            <p className="text-xl font-bold text-slate-900">support@californiataxcalculators.com</p>
+                            <p className="text-xl font-bold">support@californiataxcalculators.com</p>
                         </div>
                     </div>
 
-                    <div className="prose prose-slate">
-                        <h3 className="text-blue-900 font-bold">Frequently Asked Questions</h3>
-                        <p className="text-slate-600 text-sm">
-                            If you're inquiring about specific tax rates for a city not listed, please check our <strong>Resources</strong> page first as we update it weekly.
+                    <div className="prose prose-slate text-slate-700">
+                        <h3 className="text-blue-900 font-bold text-xl mb-2">Frequently Asked Questions</h3>
+                        <p className="mb-6">
+                            If you're inquiring about specific tax rates for a city not listed, please check our Resources page first as we update it weekly.
                         </p>
-                        <h3 className="text-blue-900 font-bold mt-6">Response Time</h3>
-                        <p className="text-slate-600 text-sm">
+                        <h3 className="text-blue-900 font-bold text-xl mb-2">Response Time</h3>
+                        <p>
                             Our team typically responds to all inquiries within <strong>24-48 business hours</strong>.
                         </p>
                     </div>
