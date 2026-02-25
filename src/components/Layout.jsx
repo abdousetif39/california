@@ -21,7 +21,7 @@ export default function Layout({ children }) {
 
                 {/* 2. وسوم فيسبوك ولينكد إن (Open Graph) */}
                 {/* ⚠️ ضع رابط Vercel الحقيقي الخاص بك بدلاً من كلمة "رابط-موقعك-هنا" ⚠️ */}
-                <meta property="og:image" content="https://california-silk.vercel.app/og-image.jpg" />
+                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
                 <meta property="og:title" content="California Tax Calculators 2026" />
@@ -33,7 +33,7 @@ export default function Layout({ children }) {
                 <meta name="twitter:title" content="California Tax Calculators 2026" />
                 <meta name="twitter:description" content="Estimate your CA taxes accurately with our 2026 updated tools." />
                 {/* لقد أضفت صورة تويتر أيضاً ليكون موقعك مثالياً */}
-                <meta name="twitter:image" content="https://california-silk.vercel.app/og-image.jpg" />
+                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
             </Head>
 
             <Navbar />
