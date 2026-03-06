@@ -132,7 +132,7 @@ export default function Resources() {
                         <Link href="/sales-tax" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="bg-green-100 p-3 rounded-lg text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
-                                    <Icons.CalculatorIcon /> {/* تأكد من وجود أيقونة مناسبة في Icons */}
+                                    <Icons.Calculator /> {/* تأكد من وجود أيقونة مناسبة في Icons */}
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-slate-900">California Sales Tax Calculator</h3>
