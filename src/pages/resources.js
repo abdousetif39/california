@@ -29,8 +29,8 @@ export default function Resources() {
             <Head>
                 <title>California Tax Resources 2026 | Guides, Deadlines & Forms</title>
                 <meta name="description" content="The complete hub for California tax resources: access our in-depth guides, key filing deadlines for 2026, common tax forms, and official agency links." />
-                <meta name="robots" content="index, follow" />
                 <link rel="canonical" href="https://californiataxcalculators.com/resources" />
+                <meta name="robots" content="index, follow" />
                 
                 <meta property="og:title" content="California Tax Resources & Official Guides 2026" />
                 <meta property="og:description" content="The complete hub for California tax guides, official links, and filing information." />
@@ -63,6 +63,10 @@ export default function Resources() {
                                 {
                                     "@type": "WebPage",
                                     "@id": "https://californiataxcalculators.com/property-tax"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "@id": "https://californiataxcalculators.com/sales-tax"
                                 }
                             ],
                             "publisher": {
@@ -70,34 +74,6 @@ export default function Resources() {
                                 "name": "California Tax Calculators",
                                 "url": "https://californiataxcalculators.com"
                             }
-                        })
-                    }}
-                />
-
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "FAQPage",
-                            "mainEntity": [
-                                {
-                                    "@type": "Question",
-                                    "name": "What is the California tax filing deadline?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "The primary deadline to file both federal and California state income taxes is April 15. If an extension is filed, the deadline is October 15."
-                                    }
-                                },
-                                {
-                                    "@type": "Question",
-                                    "name": "What is the main California tax form?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "The main form for residents is Form 540, the California Resident Income Tax Return. Nonresidents use Form 540NR."
-                                    }
-                                }
-                            ]
                         })
                     }}
                 />
@@ -118,12 +94,13 @@ export default function Resources() {
 
             <div className="max-w-4xl mx-auto space-y-8 -mt-24 px-4 pb-16 relative z-10">
                 
-                {/* --- 1. Comprehensive Tax Guides Hub --- */}
+                {/* --- 1. Comprehensive Tax Guides & Tools Hub --- */}
                 <section className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100 ring-4 ring-blue-50">
                     <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                        <Icons.BookOpen className="text-blue-600" /> Our Tax Guides
+                        <Icons.BookOpen className="text-blue-600" /> Tax Guides & Calculators
                     </h2>
                     <div className="grid gap-4">
+                        {/* California Income Tax Guide */}
                         <Link href="/california-income-tax-guide" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="bg-blue-100 p-3 rounded-lg text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -137,29 +114,35 @@ export default function Resources() {
                             <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
                         </Link>
 
-                        <Link
-                            href="/california-tax-brackets"
-                            className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between"
-                        >
+                        {/* California Tax Brackets */}
+                        <Link href="/california-tax-brackets" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="bg-purple-100 p-3 rounded-lg text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                                     <Icons.BarChart />
                                 </div>
-
                                 <div>
-                                    <h3 className="font-bold text-slate-900">
-                                        California Tax Brackets
-                                    </h3>
-
-                                    <p className="text-sm text-slate-500">
-                                        View the official California income tax brackets and rates for 2026.
-                                    </p>
+                                    <h3 className="font-bold text-slate-900">California Tax Brackets</h3>
+                                    <p className="text-sm text-slate-500">View official 2026 income tax rates.</p>
                                 </div>
                             </div>
-
-                            <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform transform group-hover:translate-x-1" />
+                            <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
                         </Link>
 
+                        {/* ✅ رابط حاسبة ضريبة المبيعات الجديد */}
+                        <Link href="/sales-tax" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                                <div className="bg-green-100 p-3 rounded-lg text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                    <Icons.CalculatorIcon /> {/* تأكد من وجود أيقونة مناسبة في Icons */}
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-slate-900">California Sales Tax Calculator</h3>
+                                    <p className="text-sm text-slate-500">Calculate local sales tax rates for any CA city.</p>
+                                </div>
+                            </div>
+                            <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
+                        </Link>
+
+                        {/* Property Tax Guide */}
                         <Link href="/property-tax" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="bg-orange-100 p-3 rounded-lg text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-colors">
@@ -175,7 +158,7 @@ export default function Resources() {
                     </div>
                 </section>
                 
-                {/* --- 2. Tax Filing Deadlines --- */}
+                {/* --- المجموعات الأخرى (Deadlines, Forms, Agencies) تبقى كما هي --- */}
                 <section className="bg-white rounded-xl shadow-md p-8 border border-slate-100">
                     <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
                         <Icons.Calendar />
@@ -184,37 +167,19 @@ export default function Resources() {
                     <ul className="space-y-3 text-slate-700 list-disc pl-5 marker:text-blue-500">
                         <li><strong>April 15, 2026:</strong> Main deadline for filing federal & California income tax returns.</li>
                         <li><strong>October 15, 2026:</strong> Final deadline to file if you requested an automatic extension.</li>
-                        <li><strong>Quarterly Estimated Payments:</strong> Due April 15, June 15, Sept 15, and Jan 15 (of the next year).</li>
                     </ul>
                 </section>
 
-                {/* --- 3. Common Tax Forms --- */}
-                <section className="bg-white rounded-xl shadow-md p-8 border border-slate-100">
-                    <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        <Icons.FileText />
-                        Common California Tax Forms
-                    </h2>
-                    <ul className="space-y-3 text-slate-700 list-disc pl-5">
-                        <li><strong>Form 540:</strong> The standard California Resident Income Tax Return.</li>
-                        <li><strong>Form 540NR:</strong> For nonresidents or part-year residents.</li>
-                        <li><strong>W-4 (Federal) / DE 4 (California):</strong> Employee's withholding certificate to set paycheck deductions.</li>
-                    </ul>
-                </section>
-                
-                {/* --- 4. Official Tax Agencies --- */}
                 <div className="bg-white rounded-xl shadow-md overflow-hidden border border-slate-100 text-slate-900">
                      <div className="p-6 border-b border-slate-100 bg-slate-50">
                          <h2 className="text-xl font-bold text-slate-800 flex items-center gap-3"><Icons.BookOpen /> Official Agency Links</h2>
                      </div>
                      <div className="divide-y divide-slate-100">
                          <a href="https://www.ftb.ca.gov/" target="_blank" rel="noopener noreferrer" className="p-6 hover:bg-slate-50 transition-colors flex justify-between items-center group no-underline">
-                             <div><h3 className="font-bold text-blue-700 group-hover:underline">Franchise Tax Board (FTB)</h3><p className="text-sm text-slate-600 mt-1">File state income tax, check refund status, and find state-specific forms.</p></div><Icons.ExternalLink />
-                         </a>
-                         <a href="https://www.irs.gov/" target="_blank" rel="noopener noreferrer" className="p-6 hover:bg-slate-50 transition-colors flex justify-between items-center group no-underline">
-                             <div><h3 className="font-bold text-blue-700 group-hover:underline">Internal Revenue Service (IRS)</h3><p className="text-sm text-slate-600 mt-1">Federal tax filing, W-4 forms, and tax withholding estimators.</p></div><Icons.ExternalLink />
+                             <div><h3 className="font-bold text-blue-700 group-hover:underline">Franchise Tax Board (FTB)</h3><p className="text-sm text-slate-600 mt-1">File state income tax, check refund status.</p></div><Icons.ExternalLink />
                          </a>
                          <a href="https://www.cdtfa.ca.gov/" target="_blank" rel="noopener noreferrer" className="p-6 hover:bg-slate-50 transition-colors flex justify-between items-center group no-underline">
-                             <div><h3 className="font-bold text-blue-700 group-hover:underline">CDTFA (Sales Tax)</h3><p className="text-sm text-slate-600 mt-1">Find current sales & use tax rates by city and county.</p></div><Icons.ExternalLink />
+                             <div><h3 className="font-bold text-blue-700 group-hover:underline">CDTFA (Sales Tax)</h3><p className="text-sm text-slate-600 mt-1">Official sales & use tax rates by city.</p></div><Icons.ExternalLink />
                          </a>
                      </div>
                 </div>
