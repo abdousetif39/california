@@ -29,12 +29,15 @@ export default function Resources() {
             <Head>
                 <title>California Tax Resources 2026 | Guides, Deadlines & Forms</title>
                 <meta name="description" content="The complete hub for California tax resources: access our in-depth guides, key filing deadlines for 2026, common tax forms, and official agency links." />
+                <meta name="robots" content="index, follow" />
                 <link rel="canonical" href="https://californiataxcalculators.com/resources" />
                 
                 <meta property="og:title" content="California Tax Resources & Official Guides 2026" />
                 <meta property="og:description" content="The complete hub for California tax guides, official links, and filing information." />
                 <meta property="og:url" content="https://californiataxcalculators.com/resources" />
                 <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="California Tax Calculators" />
                 <meta name="twitter:card" content="summary_large_image" />
 
                 <script 
@@ -43,9 +46,30 @@ export default function Resources() {
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "CollectionPage",
+                            "@id": "https://californiataxcalculators.com/resources",
                             "name": "California Tax Resources",
                             "url": "https://californiataxcalculators.com/resources",
-                            "description": "A collection of guides, deadlines, forms, and official links for navigating California taxes."
+                            "dateModified": "2026-03-06",
+                            "description": "A collection of guides, deadlines, forms, and official links for navigating California taxes.",
+                            "mainEntity": [
+                                {
+                                    "@type": "WebPage",
+                                    "@id": "https://californiataxcalculators.com/california-income-tax-guide"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "@id": "https://californiataxcalculators.com/california-tax-brackets"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "@id": "https://californiataxcalculators.com/property-tax"
+                                }
+                            ],
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "California Tax Calculators",
+                                "url": "https://californiataxcalculators.com"
+                            }
                         })
                     }}
                 />
@@ -85,7 +109,9 @@ export default function Resources() {
                     <span>{mounted ? formatDateTime(currentTime) : "Loading..."}</span>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Tax Resources & Guides</h1>
+                    <h1 id="california-tax-resources" className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+                        Tax Resources & Guides
+                    </h1>
                     <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">Everything you need to navigate California taxes, all in one place.</p>
                 </div>
             </div>
@@ -108,21 +134,30 @@ export default function Resources() {
                                     <p className="text-sm text-slate-500">A complete breakdown of CA income tax rules.</p>
                                 </div>
                             </div>
-                            {/* ✅ تم تطبيق تحسين Tailwind */}
                             <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
                         </Link>
 
-                        <Link href="/california-income-tax-guide#brackets" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
+                        <Link
+                            href="/california-tax-brackets"
+                            className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between"
+                        >
                             <div className="flex items-center gap-4">
-                                <div className="bg-green-100 p-3 rounded-lg text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                <div className="bg-purple-100 p-3 rounded-lg text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                                     <Icons.BarChart />
                                 </div>
+
                                 <div>
-                                    <h3 className="font-bold text-slate-900">California Tax Brackets</h3>
-                                    <p className="text-sm text-slate-500">Current 2026 rates for all filing statuses.</p>
+                                    <h3 className="font-bold text-slate-900">
+                                        California Tax Brackets
+                                    </h3>
+
+                                    <p className="text-sm text-slate-500">
+                                        View the official California income tax brackets and rates for 2026.
+                                    </p>
                                 </div>
                             </div>
-                            <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
+
+                            <Icons.ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform transform group-hover:translate-x-1" />
                         </Link>
 
                         <Link href="/property-tax" className="group p-4 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all flex items-center justify-between">
