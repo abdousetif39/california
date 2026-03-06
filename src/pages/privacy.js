@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Script from 'next/script';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 
@@ -7,36 +6,43 @@ export default function Privacy() {
   return (
     <Layout>
       <Head>
-        {/* ✅ العناوين الأساسية */}
-        <title>Privacy Policy - California Tax Calculators</title>
-        <meta name="description" content="Privacy Policy for CaliforniaTaxCalculators.com. Learn how we handle your data and cookies." />
-        <link rel="canonical" href="https://californiataxcalculators.com/privacy" />
-        
-        {/* ✅ تعديل مسار الأيقونة (إضافة / في البداية) */}
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Privacy Policy - California Tax Calculators</title>
 
-        {/* ✅ تصحيح وسوم التواصل الاجتماعي لتخصيص هذه الصفحة وليس Sales Tax */}
-        <meta property="og:title" content="Privacy Policy - California Tax Calculators" />
-        <meta property="og:description" content="Your privacy is our priority. Learn how we handle data and CCPA compliance." />
-        <meta property="og:url" content="https://californiataxcalculators.com/privacy" />
-        <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
-        <meta property="og:type" content="website" />
-        
-        {/* تويتر */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Privacy Policy - California Tax Calculators" />
-      </Head>
+<meta name="description" content="Privacy Policy for CaliforniaTaxCalculators.com." />
+<meta name="robots" content="index, follow" />
 
-      {/* ✅ كود تتبع جوجل الخاص بك */}
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-EEY8M1W1Y6');
-        `}
-      </Script>
+<link rel="canonical" href="https://californiataxcalculators.com/privacy" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<meta property="og:title" content="Privacy Policy - California Tax Calculators" />
+<meta property="og:description" content="Your privacy is our priority." />
+<meta property="og:url" content="https://californiataxcalculators.com/privacy" />
+<meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+<meta property="og:type" content="article" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Privacy Policy - California Tax Calculators" />
+<meta name="twitter:description" content="Learn how CaliforniaTaxCalculators.com handles privacy, cookies, and analytics." />
+
+<script
+type="application/ld+json"
+dangerouslySetInnerHTML={{
+__html: JSON.stringify({
+"@context": "https://schema.org",
+"@type": "PrivacyPolicy",
+"name": "Privacy Policy",
+"url": "https://californiataxcalculators.com/privacy",
+"dateModified": "2026-01-01",
+"publisher": {
+"@type": "Organization",
+"name": "California Tax Calculators",
+"url": "https://californiataxcalculators.com"
+}
+})
+}}
+/>
+
+</Head>
 
       <main className="min-h-screen bg-slate-50 py-12 px-4 text-slate-900">
         <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12 border border-slate-100">
@@ -51,7 +57,7 @@ export default function Privacy() {
             
             <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">2. Cookies</h3>
             <p className="mb-6 text-slate-700 leading-relaxed">
-              We use standard cookies to analyze website traffic and improve user experience via Google Analytics. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits.
+              We use cookies and third-party analytics tools such as Google Analytics to understand how visitors use our website and to improve the user experience. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits.
             </p>
             
             <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">3. CCPA Compliance</h3>
