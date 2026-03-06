@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Script from 'next/script';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 
@@ -10,30 +9,44 @@ export default function TermsOfUse() {
         {/* ✅ العناوين الأساسية */}
         <title>Terms of Use - California Tax Calculators</title>
         <meta name="description" content="Terms of Use and Disclaimers for CaliforniaTaxCalculators.com." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://californiataxcalculators.com/terms" />
         
-        {/* ✅ تصحيح مسار الأيقونة */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-        {/* ✅ تصحيح وسوم التواصل الاجتماعي لهذه الصفحة تحديداً */}
+        {/* ✅ وسوم التواصل الاجتماعي */}
         <meta property="og:title" content="Terms of Use - California Tax Calculators" />
         <meta property="og:description" content="Please read our terms of use and professional disclaimer regarding our tax tools." />
         <meta property="og:url" content="https://californiataxcalculators.com/terms" />
         <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary" />
+        {/* ✅ تم إضافة Twitter Meta Tags */}
+        <meta name="twitter:title" content="Terms of Use - California Tax Calculators" />
+        <meta name="twitter:description" content="Please read our terms of use and professional disclaimer regarding our tax tools." />
+        <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
+        
+        {/* ✅ Schema المحسن */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TermsOfService",
+              "name": "Terms of Use",
+              "url": "https://californiataxcalculators.com/terms",
+              "dateModified": "2026-01-01", 
+              // ✅ تم إضافة inLanguage
+              "inLanguage": "en",
+              "publisher": {
+                "@type": "Organization",
+                "name": "California Tax Calculators",
+                "url": "https://californiataxcalculators.com"
+              }
+            })
+          }}
+        />
       </Head>
-
-      {/* ✅ كود تتبع جوجل الخاص بك */}
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-EEY8M1W1Y6');
-        `}
-      </Script>
 
       <main className="min-h-screen bg-slate-50 py-12 px-4 text-slate-900">
         <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12 border border-slate-100">
@@ -58,6 +71,28 @@ export default function TermsOfUse() {
             <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">3. Limitation of Liability</h3>
             <p className="mb-8 text-slate-700 leading-relaxed">
               We are not liable for any damages or losses resulting from the use of this website or reliance on its calculations.
+            </p>
+
+            <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">4. External Links</h3>
+            <p className="mb-6 text-slate-700 leading-relaxed">
+              This website may contain links to external government or informational websites 
+              including the IRS and California Franchise Tax Board. We are not responsible 
+              for the content or policies of external sites.
+            </p>
+
+            <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">5. Changes to These Terms</h3>
+            <p className="mb-6 text-slate-700 leading-relaxed">
+              We may update these Terms of Use from time to time. Updates will be reflected 
+              by the “Last Updated” date at the top of this page.
+            </p>
+
+            <h3 className="text-xl font-bold mt-8 mb-4 text-slate-900 border-b pb-2">6. Privacy Policy</h3>
+            <p className="mb-6 text-slate-700 leading-relaxed">
+              Your privacy is important to us. Please review our
+              <Link href="/privacy" className="text-blue-600 font-semibold ml-1">
+                Privacy Policy
+              </Link>
+              to understand how we collect and use information.
             </p>
           </div>
 

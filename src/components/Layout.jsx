@@ -2,7 +2,8 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import SiteFooter from './SiteFooter';
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 export default function Layout({ children }) {
     const [currentUrl, setCurrentUrl] = useState("https://californiataxcalculators.com");
 

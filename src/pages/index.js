@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
+import Link from 'next/link';
+import Image from 'next/image';
 import Layout from '../components/Layout';
 import * as Icons from '../components/Icons';
 
@@ -22,7 +23,9 @@ export default function Home() {
       const resolved = Intl.DateTimeFormat().resolvedOptions().timeZone; 
       setTimeZone(resolved.replace('_', ' ')); 
     } catch (e) {}
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    
+    // التحديث كل 60 ثانية لمنع إعادة التصيير المستمر
+    const timer = setInterval(() => setCurrentTime(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
 
@@ -35,15 +38,19 @@ export default function Home() {
     const standardDeduction = filingStatus === 'single' ? 14600 : 29200;
     const taxableIncome = Math.max(0, income - standardDeduction);
 
+    // شرائح الضرائب الفيدرالية
     let fedTax = 0;
     if (taxableIncome > 0) {
         if (taxableIncome < 11600) fedTax = taxableIncome * 0.10;
         else if (taxableIncome < 47150) fedTax = 1160 + (taxableIncome - 11600) * 0.12;
         else if (taxableIncome < 100525) fedTax = 5426 + (taxableIncome - 47150) * 0.22;
         else if (taxableIncome < 191950) fedTax = 17168 + (taxableIncome - 100525) * 0.24;
-        else fedTax = taxableIncome * 0.28;
+        else if (taxableIncome < 243725) fedTax = 39110 + (taxableIncome - 191950) * 0.32;
+        else if (taxableIncome < 609350) fedTax = 55678 + (taxableIncome - 243725) * 0.35;
+        else fedTax = 183646 + (taxableIncome - 609350) * 0.37;
     }
 
+    // شرائح الضرائب لولاية كاليفورنيا (محدثة لتشمل الدخل المرتفع جداً)
     let caTax = 0;
     if (taxableIncome > 0) {
         if (taxableIncome < 10412) caTax = taxableIncome * 0.01;
@@ -51,7 +58,11 @@ export default function Home() {
         else if (taxableIncome < 38959) caTax = 389.56 + (taxableIncome - 24684) * 0.04;
         else if (taxableIncome < 54081) caTax = 960.56 + (taxableIncome - 38959) * 0.06;
         else if (taxableIncome < 68350) caTax = 1867.88 + (taxableIncome - 54081) * 0.08;
-        else caTax = taxableIncome * 0.093;
+        else if (taxableIncome < 349137) caTax = 3009.40 + (taxableIncome - 68350) * 0.093; 
+        else if (taxableIncome < 418961) caTax = 29122.59 + (taxableIncome - 349137) * 0.103;
+        else if (taxableIncome < 698271) caTax = 36314.46 + (taxableIncome - 418961) * 0.113;
+        else if (taxableIncome < 1000000) caTax = 67876.49 + (taxableIncome - 698271) * 0.123;
+        else caTax = 104989.16 + (taxableIncome - 1000000) * 0.133; // ضريبة 13.3% شاملة ضريبة الصحة النفسية
     }
 
     const ssCap = 168600;
@@ -72,19 +83,54 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>California Tax Calculator 2026 | Paycheck, Sales & Property Estimator</title>
-        <meta name="description" content="Free and accurate California tax calculators for 2026. Estimate your net pay, sales tax by city, and property taxes." />
-      </Head>
+        <title>California Tax Calculator 2026 | Paycheck & Income Estimator</title>
+        <meta name="description" content="Free and accurate California tax calculator for 2026. Estimate your net pay, federal tax, state tax, and FICA withholdings." />
+        <link rel="canonical" href="https://californiataxcalculators.com/" />
+        
+        <meta name="robots" content="index, follow" />
+        
+        {/* ✅ WebSite Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "California Tax Calculators",
+            "url": "https://californiataxcalculators.com"
+        })}} />
 
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-EEY8M1W1Y6');
-        `}
-      </Script>
+        {/* SoftwareApplication Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "California Paycheck Calculator 2026",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        })}} />
+
+        {/* FAQPage Schema */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Does California tax Social Security benefits?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. California does not tax Social Security retirement benefits."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is the highest tax rate in California?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The highest marginal income tax rate in California is 13.3%."
+                    }
+                }
+            ]
+        })}} />
+      </Head>
 
       <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white pb-32 pt-16 relative">
         <div className="absolute top-4 right-4 md:top-8 md:right-8 flex flex-col items-end">
@@ -115,7 +161,15 @@ export default function Home() {
                 <label className="block text-sm font-medium text-slate-700 mb-2">Gross Pay Amount</label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span className="text-slate-500 sm:text-sm">$</span></div>
-                  <input type="number" value={grossIncome} onChange={(e) => setGrossIncome(e.target.value)} className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 text-slate-900 sm:text-lg border-slate-300 rounded-md py-3 bg-slate-50" />
+                  {/* ✅ تحسين حقل الإدخال */}
+                  <input 
+                    type="number" 
+                    min="0" 
+                    step="1000" 
+                    value={grossIncome} 
+                    onChange={(e) => setGrossIncome(e.target.value)} 
+                    className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 text-slate-900 sm:text-lg border-slate-300 rounded-md py-3 bg-slate-50" 
+                  />
                   <div className="absolute inset-y-0 right-0 flex items-center">
                     <select value={payFrequency} onChange={(e) => setPayFrequency(e.target.value)} className="focus:ring-blue-500 focus:border-blue-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-slate-500 sm:text-sm rounded-md">
                       <option value="annually">/ Year</option>
@@ -153,6 +207,95 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* CTA & Internal Links */}
+        <div className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10">
+            <div className="max-w-3xl">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Understand Your California Taxes</h2>
+                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Navigating California's tax brackets can be complicated. Knowing the difference between federal taxes, state taxes, and payroll deductions (like FICA) is crucial for accurate financial planning in 2026.
+                </p>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                    <Link href="/california-income-tax-guide" className="inline-flex justify-center items-center bg-blue-50 text-blue-700 font-bold px-6 py-4 rounded-xl hover:bg-blue-100 transition-colors border border-blue-200">
+                        Read the Full Income Tax Guide →
+                    </Link>
+                    <Link href="/property-tax" className="inline-flex justify-center items-center bg-slate-50 text-slate-700 font-semibold px-6 py-4 rounded-xl hover:bg-slate-100 transition-colors border border-slate-200">
+                        Estimate Property Tax
+                    </Link>
+                    <Link href="/sales-tax" className="inline-flex justify-center items-center bg-slate-50 text-slate-700 font-semibold px-6 py-4 rounded-xl hover:bg-slate-100 transition-colors border border-slate-200">
+                        Calculate Sales Tax
+                    </Link>
+                </div>
+            </div>
+        </div>
+
+        {/* SEO Content Section 1 */}
+        <section className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+            How California Income Tax Works
+          </h2>
+          
+          <Image
+            src="/og-image.jpg"
+            alt="California income tax calculation and planning for 2026"
+            width={1200}
+            height={630}
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="w-full h-auto rounded-xl shadow-md border border-slate-200 my-8 object-cover max-h-96"
+          />
+
+          <p className="text-slate-600 leading-relaxed mb-4">
+            California uses a progressive income tax system. This means that the tax rate you pay increases as your income rises. Instead of applying one flat rate to all income, California divides taxable income into brackets. Each bracket is taxed at a different rate.
+          </p>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            For example, the first portion of your income may be taxed at only 1%, while higher portions may be taxed at rates above 9%. High-income earners may even pay additional surcharges under certain circumstances.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Our calculator above estimates your combined federal income tax, California state income tax, and payroll deductions such as Social Security and Medicare. This helps you better understand your real take-home pay after taxes.
+          </p>
+        </section>
+
+        {/* SEO Content Section 2 */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+            Federal vs California State Taxes
+          </h2>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            When you receive a paycheck in California, several types of taxes may be deducted from your income. Federal income tax is collected by the Internal Revenue Service (IRS) and funds national programs such as defense, federal transportation, and healthcare programs.
+          </p>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            California state income tax is collected by the California Franchise Tax Board (FTB). This revenue helps fund public schools, universities, transportation infrastructure, and statewide services.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            In addition to these taxes, payroll deductions like Social Security and Medicare are also applied to most workers. Understanding how each of these taxes works can help you better plan your finances and estimate your true net income.
+          </p>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                Frequently Asked Questions
+            </h2>
+            <div className="space-y-6">
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                        Does California tax Social Security benefits?
+                    </h3>
+                    <p className="text-slate-600">
+                        No. California is one of the states that does not tax Social Security retirement benefits, providing significant relief to retirees living in the state.
+                    </p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                        What is the highest tax rate in California?
+                    </h3>
+                    <p className="text-slate-600">
+                        The highest marginal income tax rate in California is 13.3% (including the 1% mental health services tax surcharge), which applies to very high-income earners exceeding $1 million.
+                    </p>
+                </div>
+            </div>
+        </section>
+
       </main>
     </Layout>
   );

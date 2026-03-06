@@ -1,31 +1,25 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
+import Link from 'next/link';
 import Layout from '../components/Layout';
-import * as Icons from '../components/Icons';
+import { Clock, HomeIcon } from '../components/Icons';
 
 export default function PropertyTax() {
+    // 1. الحالة (State)
     const [mounted, setMounted] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date());
-    const [timeZone, setTimeZone] = useState('');
     const [homeValue, setHomeValue] = useState(500000);
-    const [propertyTaxResult, setPropertyTaxResult] = useState(0);
+
+    // 2. الحساب المشتق (Derived State) - تحسين منطق الحساب
+    const propertyTaxResult = homeValue > 0 ? homeValue * 0.012 : 0;
 
     useEffect(() => {
         setMounted(true);
-        try { 
-            const resolved = Intl.DateTimeFormat().resolvedOptions().timeZone; 
-            setTimeZone(resolved.replace('_', ' ')); 
-        } catch (e) {}
-        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+        const timer = setInterval(() => setCurrentTime(new Date()), 60000);
         return () => clearInterval(timer);
     }, []);
 
-    useEffect(() => { 
-        // استخدام نسبة 1.2% كمتوسط أكثر دقة لولاية كاليفورنيا شاملة السندات المحلية
-        setPropertyTaxResult((parseFloat(homeValue) || 0) * 0.012); 
-    }, [homeValue]);
-
+    // تنسيق العملة
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', { 
         style: 'currency', 
         currency: 'USD', 
@@ -35,154 +29,214 @@ export default function PropertyTax() {
     return (
         <Layout>
             <Head>
-                {/* 1. SEO الأساسي */}
-                <title>California Property Tax Estimator 2026 | Prop 13 Calculator</title>
-                <meta name="description" content="Estimate your California property taxes based on home value. Understand Prop 13 limits, assessed value vs market value, and local bond rates." />
+                {/* SEO الأساسي */}
+                <title>California Property Tax Calculator 2026 | Prop 13 Estimator</title>
+                <meta name="description" content="Use our California Property Tax Calculator to estimate your annual property taxes based on assessed home value and Prop 13 limits. Updated for 2026." />
+                <meta name="robots" content="index, follow" />
                 <link rel="canonical" href="https://californiataxcalculators.com/property-tax" />
                 
-                {/* 2. وسوم التواصل الاجتماعي */}
-                <meta property="og:title" content="California Property Tax Estimator 2026" />
-                <meta property="og:description" content="Quickly estimate your annual property taxes under Proposition 13 limits." />
+                {/* وسوم التواصل الاجتماعي */}
+                <meta property="og:title" content="California Property Tax Calculator 2026" />
+                <meta property="og:description" content="Quickly calculate your annual property taxes under Proposition 13 limits." />
                 <meta property="og:url" content="https://californiataxcalculators.com/property-tax" />
                 <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                
                 <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="California Property Tax Calculator 2026" />
+                <meta name="twitter:description" content="Estimate your California property taxes using our Prop 13 calculator." />
+                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
 
-                {/* 3. JSON-LD FAQ Schema */}
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    "mainEntity": [{
-                        "@type": "Question",
-                        "name": "How does Proposition 13 protect me from rising property taxes?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Prop 13 limits the general property tax rate to 1% and prevents assessed values from increasing by more than 2% per year unless the property is sold."
+                {/* البيانات المهيكلة JSON-LD */}
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        "name": "California Property Tax Calculator",
+                        "url": "https://californiataxcalculators.com/property-tax",
+                        "description": "Estimate California property taxes using our Prop 13 calculator."
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "What is the property tax rate in California?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "The base property tax rate in California is 1% under Proposition 13, though local bonds may increase the effective rate slightly."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "How often do property taxes increase in California?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Under Proposition 13, assessed property values may increase by up to 2% per year unless the property is sold."
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "SoftwareApplication",
+                        "name": "California Property Tax Calculator",
+                        "operatingSystem": "All",
+                        "applicationCategory": "FinanceApplication",
+                        "isAccessibleForFree": true, // تحسين SEO: الإشارة إلى أن الأداة مجانية
+                        "offers": { 
+                            "@type": "Offer", 
+                            "price": "0", 
+                            "priceCurrency": "USD" 
                         }
-                    }, {
-                        "@type": "Question",
-                        "name": "Why is my property tax bill higher than 1%?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "While the base rate is 1%, local voter-approved bonds and special assessments (like Mello-Roos) typically raise the effective rate to 1.1% - 1.25%."
-                        }
-                    }]
-                })}} />
-
-                {/* 4. SoftwareApplication Schema (لإظهار النجوم في جوجل) */}
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "SoftwareApplication",
-                    "name": "California Property Tax Estimator",
-                    "operatingSystem": "All",
-                    "applicationCategory": "FinanceApplication",
-                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-                    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "154" }
-                })}} />
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://californiataxcalculators.com/" },
+                            { "@type": "ListItem", "position": 2, "name": "Property Tax Calculator", "item": "https://californiataxcalculators.com/property-tax" }
+                        ]
+                    }
+                ])}} />
             </Head>
-
-            {/* Google Analytics */}
-            <Script src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" strategy="afterInteractive" />
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-EEY8M1W1Y6');
-                `}
-            </Script>
 
             {/* Header Section */}
             <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white pb-32 pt-16 relative">
-                <div className="absolute top-4 right-4 md:top-8 md:right-8 flex flex-col items-end">
+                <div className="absolute top-4 right-4 md:top-8 md:right-8">
                     <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-medium border border-white/20 shadow-lg flex items-center gap-2">
-                        <Icons.Clock />
+                        <Clock className="w-4 h-4" />
                         <span>
                             {mounted ? (
                                 <>
-                                    {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+                                    {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </>
                             ) : "Loading..."}
                         </span>
                     </div>
-                    {mounted && timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
                 </div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Property Tax Estimator</h1>
-                    <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">Estimate annual property taxes based on assessed home value.</p>
+                <div className="max-w-7xl mx-auto px-4 text-center mt-8 md:mt-0">
+                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+                        California Property Tax Calculator (Prop 13 Estimator)
+                    </h1>
+                    <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8">Updated for 2026. Fast, accurate, and optimized for Proposition 13 rules.</p>
                 </div>
             </div>
 
-            {/* Main Content */}
-            <main className="-mt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative">
-                <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 text-slate-900 border border-slate-100">
-                    <h2 className="text-3xl font-bold text-slate-900 mb-6 border-b pb-4">California Property Tax Explained (Prop 13)</h2>
-                    <div className="space-y-6 text-slate-700 leading-relaxed">
-                        <div>
-                            <h3 className="text-xl font-bold text-blue-800 mb-2">1. Understanding Proposition 13</h3>
-                            <p>
-                                California property taxes are limited by <strong>Proposition 13</strong>, which sets the base tax rate at <strong>1%</strong> of the assessed value.
-                            </p>
-                        </div>
-
-                        {/* جدول البيانات المحسن للـ SEO */}
-                        <div className="mt-8 overflow-x-auto">
-                            <h4 className="text-lg font-semibold text-slate-800 mb-3">Average Effective Tax Rates by County</h4>
-                            <table className="min-w-full divide-y divide-slate-200 border rounded-lg">
-                                <thead className="bg-slate-50">
-                                    <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">County</th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Avg. Effective Rate</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-slate-200 text-sm">
-                                    <tr><td className="px-6 py-4 font-medium">Los Angeles</td><td className="px-6 py-4">1.25%</td></tr>
-                                    <tr><td className="px-6 py-4 font-medium">Orange County</td><td className="px-6 py-4">1.05%</td></tr>
-                                    <tr><td className="px-6 py-4 font-medium">Santa Clara</td><td className="px-6 py-4">1.20%</td></tr>
-                                    <tr><td className="px-6 py-4 font-medium">San Diego</td><td className="px-6 py-4">1.21%</td></tr>
-                                </tbody>
-                            </table>
-                            <p className="text-[10px] text-slate-400 mt-2 italic">*Rates include base tax plus voter-approved local debt/bonds.</p>
-                        </div>
-
-                        <div>
-                            <h3 className="text-xl font-bold text-blue-800 mb-2">2. Why is my rate higher than 1%?</h3>
-                            <p>Actual bills usually range between <strong>1.1% to 1.25%</strong> because of local voter-approved bonds and special assessments like <em>Mello-Roos</em>.</p>
-                        </div>
+            <main className="-mt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 relative text-slate-900">
+                
+                {/* Calculator Section */}
+                <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 mb-8">
+                    <div className="bg-blue-50 px-8 py-6 border-b border-blue-100">
+                        <h2 className="text-xl font-bold text-blue-900 flex items-center gap-2">
+                            <HomeIcon className="w-6 h-6" /> Property Tax Calculator
+                        </h2>
                     </div>
-                </div>
-
-                {/* Calculator Card */}
-                <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
-                    <div className="bg-blue-50 px-8 py-6 border-b border-blue-100 text-slate-900">
-                        <h2 className="text-xl font-bold text-blue-900 flex items-center gap-2"><Icons.HomeIcon /> Estimate Taxes</h2>
-                    </div>
-                    <div className="p-8 grid md:grid-cols-2 gap-12 text-slate-900">
+                    <div className="p-8 grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 mb-2">Assessed Home Value ($)</label>
                                 <input 
-                                    type="number" 
-                                    value={homeValue} 
-                                    onChange={(e) => setHomeValue(e.target.value)} 
-                                    className="focus:ring-blue-500 focus:border-blue-500 block w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900" 
+                                    type="number"
+                                    inputMode="numeric" // تحسين الموبايل
+                                    min="0"
+                                    max="50000000"
+                                    step="1000" // تحسين الـ UX عند الضغط على الأسهم
+                                    value={homeValue === 0 ? '' : homeValue} 
+                                    onChange={(e) => setHomeValue(Math.max(0, Number(e.target.value) || 0))} 
+                                    className="focus:ring-blue-500 focus:border-blue-500 block w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 font-bold" 
                                 />
-                            </div>
-                            <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
-                                <p className="text-[11px] text-yellow-800 leading-tight">
-                                    <strong>Note:</strong> We use an average effective rate of 1.2% for this estimate to account for typical local bonds.
-                                </p>
                             </div>
                         </div>
                         <div className="bg-slate-50 rounded-xl p-6 flex flex-col justify-center items-center text-center border border-slate-200">
                             <span className="text-slate-500 uppercase tracking-wide text-xs font-semibold">Estimated Annual Tax</span>
                             <span className="text-4xl font-extrabold text-blue-900 my-2">{formatCurrency(propertyTaxResult)}</span>
                             <div className="w-full border-t border-slate-200 my-4"></div>
-                            <div className="flex justify-between w-full text-sm">
-                                <span className="text-slate-600">Monthly Cost:</span>
-                                <span className="font-semibold">{formatCurrency(propertyTaxResult / 12)}</span>
-                            </div>
+                            <span className="text-sm text-slate-600">Monthly Est: <span className="font-bold">{formatCurrency(propertyTaxResult / 12)}</span></span>
                         </div>
                     </div>
+                    
+                    <p className="text-[10px] md:text-xs text-slate-400 pb-4 text-center px-4">
+                        Disclaimer: Estimates are based on average California property tax rates and may vary by county and local tax districts.
+                    </p>
+                </div>
+
+                {/* Content Sections */}
+                <div className="max-w-4xl mx-auto space-y-10">
+                    
+                    <section className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
+                        <h2 className="text-2xl font-bold mb-4 text-slate-900">Average Property Tax Rates in California</h2>
+                        <p className="text-slate-700 leading-relaxed mb-4">
+                            While Proposition 13 caps the base property tax rate at 1%, most homeowners pay slightly more due to local voter-approved bonds and assessments.
+                        </p>
+                        <p className="text-slate-700 leading-relaxed">
+                            Across California, the effective property tax rate typically ranges between 
+                            <strong> 1.1% and 1.25%</strong>. You can estimate the exact tax amount using our {" "}
+                            <Link href="/" className="text-blue-600 font-semibold underline hover:text-blue-800 transition-colors">
+                                California Income Tax Calculator
+                            </Link>.
+                        </p>
+                    </section>
+
+                    <section className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
+                        <h2 className="text-2xl font-bold mb-4 text-slate-900">When Are Property Taxes Due in California?</h2>
+                        <p className="text-slate-700 leading-relaxed mb-4">
+                            Property taxes in California are typically paid in two installments each year. 
+                            The first installment is due on <strong>November 1</strong> and becomes delinquent after December 10. 
+                            The second installment is due on <strong>February 1</strong> and becomes delinquent after April 10.
+                        </p>
+                    </section>
+
+                    <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 overflow-hidden">
+                        <h2 className="text-xl font-bold mb-6">Effective Property Tax Rates by County</h2>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-slate-200 border rounded-lg">
+                                <thead className="bg-slate-50">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">County</th>
+                                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Avg Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-slate-200 text-sm">
+                                    <tr><td className="px-6 py-4">Los Angeles</td><td className="px-6 py-4">1.25%</td></tr>
+                                    <tr><td className="px-6 py-4">Orange County</td><td className="px-6 py-4">1.05%</td></tr>
+                                    <tr><td className="px-6 py-4">San Diego</td><td className="px-6 py-4">1.21%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <section className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
+                        <h2 className="text-2xl font-bold mb-6">California Property Tax FAQ</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="font-semibold text-lg text-slate-800">What is the property tax rate in California?</h3>
+                                <p className="text-slate-700 mt-2">The base property tax rate in California is 1% of the assessed value under Proposition 13. Local voter-approved bonds can increase the effective rate slightly.</p>
+                            </div>
+                            <div>
+                                <h3 className="font-semibold text-lg text-slate-800">How often do property taxes increase?</h3>
+                                <p className="text-slate-700 mt-2">Under Prop 13, assessed values can increase by up to 2% per year unless the property changes ownership.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+                        <h2 className="text-xl font-bold mb-4">Related California Tax Calculators</h2>
+                        <ul className="grid md:grid-cols-2 gap-4">
+                            <li>
+                                <Link href="/sales-tax" className="text-blue-600 font-semibold hover:underline flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                    California Sales Tax Calculator
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/" className="text-blue-600 font-semibold hover:underline flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
+                                    California Income Tax Calculator
+                                </Link>
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </main>
         </Layout>

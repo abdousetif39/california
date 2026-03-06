@@ -83,6 +83,8 @@ export default function SiteFooter() {
                             <li><Link href="/terms" className="hover:text-blue-400 transition-colors">Terms of Use</Link></li>
                             <li><Link href="/contact" className="hover:text-blue-400 transition-colors">Contact Us</Link></li>
                             <li><Link href="/about-us" className="hover:text-blue-400 transition-colors">About Us</Link></li>
+                            {/* ✅ تم إضافة رابط Resources */}
+                            <li><Link href="/resources" className="hover:text-blue-400 transition-colors">Resources</Link></li>
                         </ul>
                     </div>
                 </div>
