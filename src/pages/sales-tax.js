@@ -2,27 +2,24 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-// import * as Icons from '../components/Icons'; // قم بإزالة التعليق إذا كنت تستخدم الأيقونات
+// import * as Icons from '../components/Icons'; 
 
 export default function SalesTax() {
-    const [mounted, setMounted] = useState(false);
-    const [currentTime, setCurrentTime] = useState(new Date());
+    // 1. Calculator State
     const [amount, setAmount] = useState(100);
     const [taxRate, setTaxRate] = useState(7.25);
     const [result, setResult] = useState({ tax: 0, total: 0 });
 
+    // 2. Calculation Logic
     useEffect(() => {
-        setMounted(true);
-        // تحديث الوقت كل دقيقة لتقليل الضغط على المتصفح
-        const timer = setInterval(() => setCurrentTime(new Date()), 60000); 
-        return () => clearInterval(timer);
-    }, []);
+        // Guard against empty or invalid inputs
+        const validAmount = amount || 0;
+        const validRate = taxRate || 0;
 
-    useEffect(() => {
-        const taxAmount = (parseFloat(amount) || 0) * (parseFloat(taxRate) / 100);
+        const taxAmount = validAmount * (validRate / 100);
         setResult({
             tax: taxAmount,
-            total: (parseFloat(amount) || 0) + taxAmount
+            total: validAmount + taxAmount
         });
     }, [amount, taxRate]);
 
@@ -30,19 +27,26 @@ export default function SalesTax() {
         style: 'currency', currency: 'USD'
     }).format(val);
 
-    // Schema Data combining SoftwareApplication and FAQPage
+    // Schema Data combining SoftwareApplication, FAQPage, and BreadcrumbList
     const schemaData = [
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "California Sales Tax Calculator",
             "applicationCategory": "FinanceApplication",
+            "applicationSubCategory": "Tax Calculator",
             "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
             "url": "https://californiataxcalculators.com/sales-tax",
             "description": "Calculate California sales tax for any city using updated 2026 tax rates.",
             "publisher": {
                 "@type": "Organization",
-                "name": "California Tax Calculators"
+                "name": "California Tax Calculators",
+                "url": "https://californiataxcalculators.com"
             },
             "aggregateRating": {
                 "@type": "AggregateRating",
@@ -71,6 +75,24 @@ export default function SalesTax() {
                     }
                 }
             ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://californiataxcalculators.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Sales Tax Calculator",
+                    "item": "https://californiataxcalculators.com/sales-tax"
+                }
+            ]
         }
     ];
 
@@ -90,6 +112,7 @@ export default function SalesTax() {
                 <meta property="og:url" content="https://californiataxcalculators.com/sales-tax" />
                 <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
                 <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="California Tax Calculators" />
 
                 {/* Twitter Cards */}
                 <meta name="twitter:card" content="summary_large_image" />
@@ -97,7 +120,7 @@ export default function SalesTax() {
                 <meta name="twitter:description" content="Calculate California sales tax for any city using updated 2026 rates." />
                 <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
                 
-                {/* JSON-LD Schemas (Software + FAQ) */}
+                {/* JSON-LD Schemas */}
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             </Head>
 
@@ -113,14 +136,34 @@ export default function SalesTax() {
                     {/* Calculator Section */}
                     <div className="md:col-span-2 space-y-8">
                         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
+                            
+                            {/* --- SEO H2 Heading --- */}
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">
+                                California Sales Tax Calculator Tool
+                            </h2>
+
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">Purchase Amount ($)</label>
-                                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none" />
+                                    <input 
+                                        type="number" 
+                                        min="0"
+                                        value={amount || ''} 
+                                        onChange={(e) => setAmount(Number(e.target.value))} 
+                                        className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-2">Sales Tax Rate (%)</label>
-                                    <input type="number" step="0.01" value={taxRate} onChange={(e) => setTaxRate(e.target.value)} className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none" />
+                                    <input 
+                                        type="number" 
+                                        min="0"
+                                        max="20"
+                                        step="0.01" 
+                                        value={taxRate || ''} 
+                                        onChange={(e) => setTaxRate(Number(e.target.value))} 
+                                        className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                                    />
                                 </div>
                             </div>
                             
@@ -200,13 +243,30 @@ export default function SalesTax() {
                         </div>
                     </div>
 
-                    {/* Sidebar Info */}
+                    {/* Sidebar Info & Internal Links */}
                     <div className="space-y-6 text-slate-900">
+                        {/* Tip Box */}
                         <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2">Quick Tip</h3>
                             <p className="text-sm text-slate-300 leading-relaxed">
                                 The base California sales tax rate is <strong>7.25%</strong>. However, local district taxes can increase the total rate up to <strong>10.75%</strong> in some areas.
                             </p>
+                        </div>
+
+                        {/* --- Internal Links (SEO Cluster) --- */}
+                        <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-100">
+                            <h3 className="text-lg font-bold text-slate-900 mb-4 border-b pb-2">More Tax Tools</h3>
+                            <div className="space-y-3">
+                                <Link href="/california-salary-after-tax" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
+                                    Salary After Tax Calculator
+                                </Link>
+                                <Link href="/california-tax-brackets" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
+                                    CA Tax Brackets (2026)
+                                </Link>
+                                <Link href="/california-income-tax-guide" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
+                                    Income Tax Guide
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
