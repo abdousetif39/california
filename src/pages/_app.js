@@ -22,8 +22,8 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* 1. Google Consent Mode v2 - يجب أن ينفذ أولاً */}
-      <Script id="google-consent-mode" strategy="beforeInteractive">
+      {/* 1. Google Consent Mode v2 - يجب أن ينفذ مبكراً */}
+      <Script id="google-consent-mode" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -38,12 +38,12 @@ export default function App({ Component, pageProps }) {
         `}
       </Script>
 
-      {/* 2. Google Analytics Global Tag - ينفذ بعد التفاعل */}
+      {/* 2. Google Analytics - تم تحويله إلى lazyOnload لإنقاذ الأداء! */}
       <Script 
         src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" 
-        strategy="afterInteractive" 
+        strategy="lazyOnload" 
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -53,6 +53,14 @@ export default function App({ Component, pageProps }) {
           gtag('config', 'G-EEY8M1W1Y6');
         `}
       </Script>
+
+      {/* 3. Google AdSense - وضعناه هنا بالتحميل الذكي لمنع تدمير سرعة الموقع */}
+      {/* ⚠️ تنبيه: استبدل الرقم 99395... برقم الناشر (Publisher ID) الحقيقي الخاص بك */}
+      <Script
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-99395XXXXXXX"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
+      />
 
       <Component {...pageProps} />
     </>
