@@ -30,7 +30,13 @@ export default function Navbar() {
           </div>
           {/* زر الموبايل */}
           <div className="flex items-center md:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2"><Menu /></button>
+            <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                className="p-2 text-slate-600 hover:text-slate-900 focus:outline-none"
+                aria-label="Toggle menu"
+            >
+                <Menu />
+            </button>
           </div>
         </div>
       </div>
@@ -38,7 +44,12 @@ export default function Navbar() {
       {/* قائمة الموبايل */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 shadow-lg absolute w-full z-50">
-            {/* ... روابط الموبايل ... */}
+            <div className="px-4 pt-2 pb-4 space-y-1">
+                <a href="/" className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors">Paycheck Calculator</a>
+                <a href="/sales-tax" className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors">Sales Tax</a>
+                <a href="/property-tax" className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors">Property Tax</a>
+                <a href="/resources" className="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 transition-colors">Resources</a>
+            </div>
         </div>
       )}
     </nav>

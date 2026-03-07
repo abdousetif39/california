@@ -22,7 +22,23 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* Google Analytics Global Tag */}
+      {/* 1. Google Consent Mode v2 - يجب أن ينفذ أولاً */}
+      <Script id="google-consent-mode" strategy="beforeInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          
+          // تعيين الحالة الافتراضية للرفض (denied) قبل تحميل Analytics أو AdSense
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'analytics_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
+        `}
+      </Script>
+
+      {/* 2. Google Analytics Global Tag - ينفذ بعد التفاعل */}
       <Script 
         src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" 
         strategy="afterInteractive" 
@@ -32,6 +48,8 @@ export default function App({ Component, pageProps }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
+          
+          // إعداد Analytics
           gtag('config', 'G-EEY8M1W1Y6');
         `}
       </Script>
