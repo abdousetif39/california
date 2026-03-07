@@ -57,7 +57,7 @@ export default function App({ Component, pageProps }) {
       {/* 3. Google AdSense - وضعناه هنا بالتحميل الذكي لمنع تدمير سرعة الموقع */}
       {/* ⚠️ تنبيه: استبدل الرقم 99395... برقم الناشر (Publisher ID) الحقيقي الخاص بك */}
       <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-99395XXXXXXX"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842"
         strategy="lazyOnload"
         crossOrigin="anonymous"
       />
