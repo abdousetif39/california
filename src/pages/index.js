@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../components/Layout';
 import * as Icons from '../components/Icons';
-import citiesData from '../data/ca-cities.json'; // ✅ تم استيراد بيانات المدن هنا
+import citiesData from '../data/ca-cities.json';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -215,7 +215,7 @@ export default function Home() {
             <div className="max-w-3xl">
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Understand Your California Taxes</h2>
                 <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Navigating California's tax brackets can be complicated. Knowing the difference between federal taxes, state taxes, and payroll deductions (like FICA) is crucial for accurate financial planning in 2026.
+                    Navigating California&apos;s tax brackets can be complicated. Knowing the difference between federal taxes, state taxes, and payroll deductions (like FICA) is crucial for accurate financial planning in 2026.
                 </p>
                 <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                     <Link href="/california-income-tax-guide" className="inline-flex justify-center items-center bg-blue-50 text-blue-700 font-bold px-6 py-4 rounded-xl hover:bg-blue-100 transition-colors border border-blue-200">
@@ -254,3 +254,85 @@ export default function Home() {
           </p>
           <p className="text-slate-600 leading-relaxed">
             Our calculator above estimates your combined federal income tax, California state income tax, and payroll deductions such as Social Security and Medicare. This helps you better understand your real take-home pay after taxes.
+          </p>
+        </section>
+
+        {/* SEO Content Section 2 */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+            Federal vs California State Taxes
+          </h2>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            When you receive a paycheck in California, several types of taxes may be deducted from your income. Federal income tax is collected by the Internal Revenue Service (IRS) and funds national programs such as defense, federal transportation, and healthcare programs.
+          </p>
+          <p className="text-slate-600 leading-relaxed mb-4">
+            California state income tax is collected by the California Franchise Tax Board (FTB). This revenue helps fund public schools, universities, transportation infrastructure, and statewide services.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            In addition to these taxes, payroll deductions like Social Security and Medicare are also applied to most workers. Understanding how each of these taxes works can help you better plan your finances and estimate your true net income.
+          </p>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+                Frequently Asked Questions
+            </h2>
+            <div className="space-y-6">
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                        Does California tax Social Security benefits?
+                    </h3>
+                    <p className="text-slate-600">
+                        No. California is one of the states that does not tax Social Security retirement benefits, providing significant relief to retirees living in the state.
+                    </p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                        What is the highest tax rate in California?
+                    </h3>
+                    <p className="text-slate-600">
+                        The highest marginal income tax rate in California is 13.3% (including the 1% mental health services tax surcharge), which applies to very high-income earners exceeding $1 million.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {/* قسم المدن (SEO Interlinking) */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                        Local Sales Tax Calculators
+                    </h2>
+                    <p className="text-slate-600 mt-2">
+                        Find exact 2026 sales tax rates for major California cities.
+                    </p>
+                </div>
+                <Link href="/sales-tax" className="text-blue-600 font-bold hover:underline whitespace-nowrap bg-blue-50 px-4 py-2 rounded-lg transition-colors hover:bg-blue-100 border border-blue-100">
+                    View All Cities →
+                </Link>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {citiesData.slice(0, 8).map((city) => (
+                    <Link
+                        key={city.slug}
+                        href={`/sales-tax/${city.slug}`}
+                        className="p-4 border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm transition-all text-center group"
+                    >
+                        <span className="block font-bold text-slate-800 group-hover:text-blue-700 transition-colors">
+                            {city.name}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1 block">
+                            {city.rate}% Rate
+                        </span>
+                    </Link>
+                ))}
+            </div>
+        </section>
+
+      </main>
+    </Layout>
+  );
+}
