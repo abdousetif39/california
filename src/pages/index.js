@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../components/Layout';
 import * as Icons from '../components/Icons';
+import citiesData from '../data/ca-cities.json'; // ✅ تم استيراد بيانات المدن هنا
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -50,7 +51,7 @@ export default function Home() {
         else fedTax = 183646 + (taxableIncome - 609350) * 0.37;
     }
 
-    // شرائح الضرائب لولاية كاليفورنيا (محدثة لتشمل الدخل المرتفع جداً)
+    // شرائح الضرائب لولاية كاليفورنيا
     let caTax = 0;
     if (taxableIncome > 0) {
         if (taxableIncome < 10412) caTax = taxableIncome * 0.01;
@@ -62,7 +63,7 @@ export default function Home() {
         else if (taxableIncome < 418961) caTax = 29122.59 + (taxableIncome - 349137) * 0.103;
         else if (taxableIncome < 698271) caTax = 36314.46 + (taxableIncome - 418961) * 0.113;
         else if (taxableIncome < 1000000) caTax = 67876.49 + (taxableIncome - 698271) * 0.123;
-        else caTax = 104989.16 + (taxableIncome - 1000000) * 0.133; // ضريبة 13.3% شاملة ضريبة الصحة النفسية
+        else caTax = 104989.16 + (taxableIncome - 1000000) * 0.133;
     }
 
     const ssCap = 168600;
@@ -89,7 +90,7 @@ export default function Home() {
         
         <meta name="robots" content="index, follow" />
         
-        {/* ✅ WebSite Schema */}
+        {/* WebSite Schema */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
@@ -158,7 +159,6 @@ export default function Home() {
             </div>
             <div className="p-6 space-y-6">
               <div>
-                {/* 🔴 التعديل هنا لربط العنوان بالحقل */}
                 <label htmlFor="grossIncome" className="block text-sm font-medium text-slate-700 mb-2">Gross Pay Amount</label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span className="text-slate-500 sm:text-sm">$</span></div>
@@ -172,7 +172,6 @@ export default function Home() {
                     className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 text-slate-900 sm:text-lg border-slate-300 rounded-md py-3 bg-slate-50" 
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center">
-                    {/* 🔴 التعديل هنا لربط القائمة المنسدلة (مخفية للزوار لكن مقروءة للمكفوفين) */}
                     <label htmlFor="payFrequency" className="sr-only">Pay Frequency</label>
                     <select id="payFrequency" value={payFrequency} onChange={(e) => setPayFrequency(e.target.value)} className="focus:ring-blue-500 focus:border-blue-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-slate-500 sm:text-sm rounded-md">
                       <option value="annually">/ Year</option>
@@ -183,7 +182,6 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                {/* 🔴 التعديل هنا لدعم إمكانية الوصول في الأزرار */}
                 <div id="filingStatusLabel" className="block text-sm font-medium text-slate-700 mb-2">Filing Status</div>
                 <div role="group" aria-labelledby="filingStatusLabel" className="grid grid-cols-2 gap-3">
                   <button aria-pressed={filingStatus === 'single'} onClick={() => setFilingStatus('single')} className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${filingStatus === 'single' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>Single</button>
@@ -256,51 +254,3 @@ export default function Home() {
           </p>
           <p className="text-slate-600 leading-relaxed">
             Our calculator above estimates your combined federal income tax, California state income tax, and payroll deductions such as Social Security and Medicare. This helps you better understand your real take-home pay after taxes.
-          </p>
-        </section>
-
-        {/* SEO Content Section 2 */}
-        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-            Federal vs California State Taxes
-          </h2>
-          <p className="text-slate-600 leading-relaxed mb-4">
-            When you receive a paycheck in California, several types of taxes may be deducted from your income. Federal income tax is collected by the Internal Revenue Service (IRS) and funds national programs such as defense, federal transportation, and healthcare programs.
-          </p>
-          <p className="text-slate-600 leading-relaxed mb-4">
-            California state income tax is collected by the California Franchise Tax Board (FTB). This revenue helps fund public schools, universities, transportation infrastructure, and statewide services.
-          </p>
-          <p className="text-slate-600 leading-relaxed">
-            In addition to these taxes, payroll deductions like Social Security and Medicare are also applied to most workers. Understanding how each of these taxes works can help you better plan your finances and estimate your true net income.
-          </p>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="mt-8 bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10 mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-                Frequently Asked Questions
-            </h2>
-            <div className="space-y-6">
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                        Does California tax Social Security benefits?
-                    </h3>
-                    <p className="text-slate-600">
-                        No. California is one of the states that does not tax Social Security retirement benefits, providing significant relief to retirees living in the state.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-100">
-                    <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                        What is the highest tax rate in California?
-                    </h3>
-                    <p className="text-slate-600">
-                        The highest marginal income tax rate in California is 13.3% (including the 1% mental health services tax surcharge), which applies to very high-income earners exceeding $1 million.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-      </main>
-    </Layout>
-  );
-}
