@@ -1,0 +1,22 @@
+[
+  { "slug": "los-angeles", "name": "Los Angeles", "rate": 9.50, "county": "Los Angeles", "population": "3.8M", "median_income": 69778 },
+  { "slug": "san-diego", "name": "San Diego", "rate": 7.75, "county": "San Diego", "population": "1.3M", "median_income": 89457 },
+  { "slug": "san-jose", "name": "San Jose", "rate": 9.38, "county": "Santa Clara", "population": "971K", "median_income": 125075 },
+  { "slug": "san-francisco", "name": "San Francisco", "rate": 8.63, "county": "San Francisco", "population": "808K", "median_income": 126187 },
+  { "slug": "fresno", "name": "Fresno", "rate": 8.35, "county": "Fresno", "population": "545K", "median_income": 57211 },
+  { "slug": "sacramento", "name": "Sacramento", "rate": 8.75, "county": "Sacramento", "population": "528K", "median_income": 71074 },
+  { "slug": "long-beach", "name": "Long Beach", "rate": 10.25, "county": "Los Angeles", "population": "466K", "median_income": 71150 },
+  { "slug": "oakland", "name": "Oakland", "rate": 10.25, "county": "Alameda", "population": "440K", "median_income": 85628 },
+  { "slug": "bakersfield", "name": "Bakersfield", "rate": 8.25, "county": "Kern", "population": "407K", "median_income": 65487 },
+  { "slug": "anaheim", "name": "Anaheim", "rate": 7.75, "county": "Orange", "population": "346K", "median_income": 81806 },
+  { "slug": "riverside", "name": "Riverside", "rate": 8.75, "county": "Riverside", "population": "320K", "median_income": 76066 },
+  { "slug": "santa-ana", "name": "Santa Ana", "rate": 7.75, "county": "Orange", "population": "310K", "median_income": 72406 },
+  { "slug": "irvine", "name": "Irvine", "rate": 7.75, "county": "Orange", "population": "314K", "median_income": 114027 },
+  { "slug": "stockton", "name": "Stockton", "rate": 9.00, "county": "San Joaquin", "population": "322K", "median_income": 63916 },
+  { "slug": "chula-vista", "name": "Chula Vista", "rate": 8.75, "county": "San Diego", "population": "277K", "median_income": 89088 },
+  { "slug": "fremont", "name": "Fremont", "rate": 10.25, "county": "Alameda", "population": "230K", "median_income": 142374 },
+  { "slug": "santa-clarita", "name": "Santa Clarita", "rate": 9.50, "county": "Los Angeles", "population": "228K", "median_income": 106155 },
+  { "slug": "san-bernardino", "name": "San Bernardino", "rate": 8.75, "county": "San Bernardino", "population": "222K", "median_income": 52353 },
+  { "slug": "modesto", "name": "Modesto", "rate": 8.88, "county": "Stanislaus", "population": "218K", "median_income": 62182 },
+  { "slug": "fontana", "name": "Fontana", "rate": 8.75, "county": "San Bernardino", "population": "212K", "median_income": 75154 }
+]

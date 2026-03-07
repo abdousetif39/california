@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
+import citiesData from '../data/ca-cities.json'; // ✅ استيراد قاعدة بيانات المدن
 
 export default function SalesTax() {
     // 1. Calculator State
@@ -11,7 +12,6 @@ export default function SalesTax() {
 
     // 2. Calculation Logic
     useEffect(() => {
-        // Guard against empty or invalid inputs
         const validAmount = amount || 0;
         const validRate = taxRate || 0;
 
@@ -26,32 +26,17 @@ export default function SalesTax() {
         style: 'currency', currency: 'USD'
     }).format(val);
 
-    // Schema Data combining SoftwareApplication, FAQPage, and BreadcrumbList
+    // Schema Data
     const schemaData = [
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "California Sales Tax Calculator",
             "applicationCategory": "FinanceApplication",
-            "applicationSubCategory": "Tax Calculator",
             "operatingSystem": "Web",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
             "url": "https://californiataxcalculators.com/sales-tax",
             "description": "Calculate California sales tax for any city using updated 2026 tax rates.",
-            "publisher": {
-                "@type": "Organization",
-                "name": "California Tax Calculators",
-                "url": "https://californiataxcalculators.com"
-            },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "210"
-            }
         },
         {
             "@context": "https://schema.org",
@@ -64,14 +49,6 @@ export default function SalesTax() {
                         "@type": "Answer",
                         "text": "The statewide base sales tax rate in California is 7.25%. Local district taxes may increase the total rate depending on the city or county."
                     }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is the highest sales tax rate in California?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Some areas can reach combined rates above 10% due to local district taxes approved by voters."
-                    }
                 }
             ]
         },
@@ -79,18 +56,8 @@ export default function SalesTax() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://californiataxcalculators.com"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Sales Tax Calculator",
-                    "item": "https://californiataxcalculators.com/sales-tax"
-                }
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://californiataxcalculators.com" },
+                { "@type": "ListItem", "position": 2, "name": "Sales Tax Calculator", "item": "https://californiataxcalculators.com/sales-tax" }
             ]
         }
     ];
@@ -101,25 +68,7 @@ export default function SalesTax() {
                 <title>California Sales Tax Calculator 2026 | City & County Rates</title>
                 <meta name="description" content="Calculate California sales tax for any city or county. Updated 2026 rates including local district taxes and state base rates." />
                 <link rel="canonical" href="https://californiataxcalculators.com/sales-tax" />
-                
-                {/* Robots Meta */}
                 <meta name="robots" content="index, follow" />
-
-                {/* OpenGraph Tags */}
-                <meta property="og:title" content="California Sales Tax Calculator 2026" />
-                <meta property="og:description" content="Calculate California sales tax for any city using updated 2026 rates." />
-                <meta property="og:url" content="https://californiataxcalculators.com/sales-tax" />
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
-                <meta property="og:type" content="website" />
-                <meta property="og:site_name" content="California Tax Calculators" />
-
-                {/* Twitter Cards */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="California Sales Tax Calculator 2026" />
-                <meta name="twitter:description" content="Calculate California sales tax for any city using updated 2026 rates." />
-                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
-                
-                {/* JSON-LD Schemas */}
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             </Head>
 
@@ -132,39 +81,28 @@ export default function SalesTax() {
 
             <main className="-mt-24 pb-12 px-4 max-w-7xl mx-auto z-10 relative">
                 <div className="grid md:grid-cols-3 gap-8">
-                    {/* Calculator Section */}
+                    
+                    {/* --- المحتوى الرئيسي --- */}
                     <div className="md:col-span-2 space-y-8">
+                        
+                        {/* 1. أداة الحاسبة العامة */}
                         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
-                            
-                            <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                                California Sales Tax Calculator Tool
-                            </h2>
-
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">Custom Rate Calculator</h2>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    {/* 🔴 إضافة htmlFor و id */}
                                     <label htmlFor="amount" className="block text-sm font-medium text-slate-700 mb-2">Purchase Amount ($)</label>
                                     <input 
-                                        id="amount"
-                                        type="number" 
-                                        min="0"
-                                        value={amount || ''} 
+                                        id="amount" type="number" min="0" value={amount === 0 ? '' : amount} 
                                         onChange={(e) => setAmount(Number(e.target.value))} 
-                                        className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                                        className="w-full text-lg border border-slate-300 rounded-md py-3 px-4 bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none" 
                                     />
                                 </div>
                                 <div>
-                                    {/* 🔴 إضافة htmlFor و id */}
                                     <label htmlFor="taxRate" className="block text-sm font-medium text-slate-700 mb-2">Sales Tax Rate (%)</label>
                                     <input 
-                                        id="taxRate"
-                                        type="number" 
-                                        min="0"
-                                        max="20"
-                                        step="0.01" 
-                                        value={taxRate || ''} 
+                                        id="taxRate" type="number" min="0" max="20" step="0.01" value={taxRate === 0 ? '' : taxRate} 
                                         onChange={(e) => setTaxRate(Number(e.target.value))} 
-                                        className="w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                                        className="w-full text-lg border border-slate-300 rounded-md py-3 px-4 bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none" 
                                     />
                                 </div>
                             </div>
@@ -182,72 +120,62 @@ export default function SalesTax() {
                             </div>
                         </div>
 
-                        {/* How it works Section */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
+                        {/* 2. قسم Hub: شبكة روابط المدن الديناميكية */}
+                        <div className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
                             <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                                How California Sales Tax Works
+                                California City Sales Tax Calculators
                             </h2>
-                            <p className="text-slate-700 leading-relaxed mb-4">
-                                California sales tax consists of a statewide base rate and additional local district taxes applied by cities and counties. The base state rate is currently 7.25%, but local jurisdictions can add district taxes that raise the combined rate significantly.
+                            <p className="text-slate-600 mb-8">
+                                Find the exact sales tax rate for major cities across California. Click your city below to use a dedicated calculator with updated 2026 local district rates.
                             </p>
-                            <p className="text-slate-700 leading-relaxed mb-4">
-                                Major metropolitan areas such as Los Angeles and San Jose often have higher combined rates due to local transportation or infrastructure taxes approved by voters.
-                            </p>
-                            <p className="text-slate-700 leading-relaxed">
-                                Use the <Link href="/" className="text-blue-600 font-semibold hover:underline">California tax calculator</Link> above to estimate the exact tax amount for any purchase in California based on the applicable combined rate for your location.
-                            </p>
-                        </div>
 
-                        {/* Data Table */}
-                        <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
-                            <h2 className="text-2xl font-bold text-slate-900 mb-4">Major California City Tax Rates (2026)</h2>
-                            <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-slate-200">
-                                    <thead className="bg-slate-50">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">City</th>
-                                            <th className="px-6 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Combined Rate</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-slate-200 text-slate-700">
-                                        <tr><td className="px-6 py-4 whitespace-nowrap">Los Angeles</td><td className="px-6 py-4 whitespace-nowrap font-bold">9.50%</td></tr>
-                                        <tr><td className="px-6 py-4 whitespace-nowrap">San Francisco</td><td className="px-6 py-4 whitespace-nowrap font-bold">8.63%</td></tr>
-                                        <tr><td className="px-6 py-4 whitespace-nowrap">San Diego</td><td className="px-6 py-4 whitespace-nowrap font-bold">7.75%</td></tr>
-                                        <tr><td className="px-6 py-4 whitespace-nowrap">San Jose</td><td className="px-6 py-4 whitespace-nowrap font-bold">9.38%</td></tr>
-                                    </tbody>
-                                </table>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {citiesData.map((city) => (
+                                    <Link
+                                        key={city.slug}
+                                        href={`/sales-tax/${city.slug}`}
+                                        className="block p-4 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm transition-all group"
+                                    >
+                                        <span className="font-semibold text-slate-800 group-hover:text-blue-700 block mb-1">
+                                            {city.name}
+                                        </span>
+                                        <span className="text-xs font-bold text-slate-500 uppercase">
+                                            {city.rate}% rate
+                                        </span>
+                                    </Link>
+                                ))}
                             </div>
                         </div>
 
-                        {/* FAQ Section */}
+                        {/* 3. الشرح النظري */}
                         <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
-                            <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                                California Sales Tax FAQ
-                            </h2>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">How California Sales Tax Works</h2>
+                            <p className="text-slate-700 leading-relaxed mb-4">
+                                California sales tax consists of a statewide base rate and additional local district taxes applied by cities and counties. The base state rate is currently 7.25%, but local jurisdictions can add district taxes that raise the combined rate significantly.
+                            </p>
+                            <p className="text-slate-700 leading-relaxed">
+                                Major metropolitan areas often have higher combined rates due to local transportation or infrastructure taxes approved by voters. Select your city from the directory above to see your exact rate.
+                            </p>
+                        </div>
+
+                        {/* 4. الأسئلة الشائعة */}
+                        <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">California Sales Tax FAQ</h2>
                             <div className="space-y-6">
                                 <div>
-                                    <h3 className="font-bold text-lg text-slate-800">
-                                        What is the base California sales tax rate?
-                                    </h3>
-                                    <p className="text-slate-700 mt-2">
-                                        The statewide base sales tax rate in California is 7.25%. Local district taxes may increase the total rate depending on the city or county.
-                                    </p>
+                                    <h3 className="font-bold text-lg text-slate-800">What is the base California sales tax rate?</h3>
+                                    <p className="text-slate-700 mt-2">The statewide base sales tax rate in California is 7.25%. Local district taxes may increase the total rate depending on the city or county.</p>
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-slate-800">
-                                        What is the highest sales tax rate in California?
-                                    </h3>
-                                    <p className="text-slate-700 mt-2">
-                                        Some areas can reach combined rates above 10% due to local district taxes approved by voters.
-                                    </p>
+                                    <h3 className="font-bold text-lg text-slate-800">What is the highest sales tax rate in California?</h3>
+                                    <p className="text-slate-700 mt-2">Some areas can reach combined rates above 10% (like Long Beach or Oakland) due to local district taxes approved by voters.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Sidebar Info & Internal Links */}
+                    {/* --- الشريط الجانبي (Sidebar) --- */}
                     <div className="space-y-6 text-slate-900">
-                        {/* Tip Box */}
                         <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2">Quick Tip</h3>
                             <p className="text-sm text-slate-300 leading-relaxed">
@@ -255,7 +183,6 @@ export default function SalesTax() {
                             </p>
                         </div>
 
-                        {/* --- Internal Links (SEO Cluster) --- */}
                         <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-100">
                             <h3 className="text-lg font-bold text-slate-900 mb-4 border-b pb-2">More Tax Tools</h3>
                             <div className="space-y-3">
@@ -265,12 +192,13 @@ export default function SalesTax() {
                                 <Link href="/california-tax-brackets" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
                                     CA Tax Brackets (2026)
                                 </Link>
-                                <Link href="/california-income-tax-guide" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
-                                    Income Tax Guide
+                                <Link href="/property-tax" className="block p-3 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-blue-700 font-semibold text-sm">
+                                    Property Tax Estimator
                                 </Link>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </main>
         </Layout>
