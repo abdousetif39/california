@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout from '../components/Layout';
+// ✅ تم تعديل المسارات للعودة خطوتين للخلف (../../)
+import Layout from '../../components/Layout'; 
+import citiesData from '../../data/ca-cities.json';
 
 export default function SalesTax() {
     // 1. Calculator State
