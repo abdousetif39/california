@@ -83,7 +83,7 @@ export default function PropertyTax() {
                         "name": "California Property Tax Calculator",
                         "operatingSystem": "All",
                         "applicationCategory": "FinanceApplication",
-                        "isAccessibleForFree": true, // تحسين SEO: الإشارة إلى أن الأداة مجانية
+                        "isAccessibleForFree": true, 
                         "offers": { 
                             "@type": "Offer", 
                             "price": "0", 
@@ -135,13 +135,15 @@ export default function PropertyTax() {
                     <div className="p-8 grid md:grid-cols-2 gap-12">
                         <div className="space-y-6">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-2">Assessed Home Value ($)</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="homeValue" className="block text-sm font-medium text-slate-700 mb-2">Assessed Home Value ($)</label>
                                 <input 
+                                    id="homeValue"
                                     type="number"
-                                    inputMode="numeric" // تحسين الموبايل
+                                    inputMode="numeric" 
                                     min="0"
                                     max="50000000"
-                                    step="1000" // تحسين الـ UX عند الضغط على الأسهم
+                                    step="1000" 
                                     value={homeValue === 0 ? '' : homeValue} 
                                     onChange={(e) => setHomeValue(Math.max(0, Number(e.target.value) || 0))} 
                                     className="focus:ring-blue-500 focus:border-blue-500 block w-full text-lg border-slate-300 rounded-md py-3 px-4 bg-slate-50 text-slate-900 font-bold" 

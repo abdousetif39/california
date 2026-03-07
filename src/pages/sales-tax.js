@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-// import * as Icons from '../components/Icons'; 
 
 export default function SalesTax() {
     // 1. Calculator State
@@ -137,15 +136,16 @@ export default function SalesTax() {
                     <div className="md:col-span-2 space-y-8">
                         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
                             
-                            {/* --- SEO H2 Heading --- */}
                             <h2 className="text-2xl font-bold text-slate-900 mb-6">
                                 California Sales Tax Calculator Tool
                             </h2>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">Purchase Amount ($)</label>
+                                    {/* 🔴 إضافة htmlFor و id */}
+                                    <label htmlFor="amount" className="block text-sm font-medium text-slate-700 mb-2">Purchase Amount ($)</label>
                                     <input 
+                                        id="amount"
                                         type="number" 
                                         min="0"
                                         value={amount || ''} 
@@ -154,8 +154,10 @@ export default function SalesTax() {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">Sales Tax Rate (%)</label>
+                                    {/* 🔴 إضافة htmlFor و id */}
+                                    <label htmlFor="taxRate" className="block text-sm font-medium text-slate-700 mb-2">Sales Tax Rate (%)</label>
                                     <input 
+                                        id="taxRate"
                                         type="number" 
                                         min="0"
                                         max="20"

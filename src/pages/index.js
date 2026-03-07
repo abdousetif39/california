@@ -158,11 +158,12 @@ export default function Home() {
             </div>
             <div className="p-6 space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Gross Pay Amount</label>
+                {/* 🔴 التعديل هنا لربط العنوان بالحقل */}
+                <label htmlFor="grossIncome" className="block text-sm font-medium text-slate-700 mb-2">Gross Pay Amount</label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span className="text-slate-500 sm:text-sm">$</span></div>
-                  {/* ✅ تحسين حقل الإدخال */}
                   <input 
+                    id="grossIncome"
                     type="number" 
                     min="0" 
                     step="1000" 
@@ -171,7 +172,9 @@ export default function Home() {
                     className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 text-slate-900 sm:text-lg border-slate-300 rounded-md py-3 bg-slate-50" 
                   />
                   <div className="absolute inset-y-0 right-0 flex items-center">
-                    <select value={payFrequency} onChange={(e) => setPayFrequency(e.target.value)} className="focus:ring-blue-500 focus:border-blue-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-slate-500 sm:text-sm rounded-md">
+                    {/* 🔴 التعديل هنا لربط القائمة المنسدلة (مخفية للزوار لكن مقروءة للمكفوفين) */}
+                    <label htmlFor="payFrequency" className="sr-only">Pay Frequency</label>
+                    <select id="payFrequency" value={payFrequency} onChange={(e) => setPayFrequency(e.target.value)} className="focus:ring-blue-500 focus:border-blue-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-slate-500 sm:text-sm rounded-md">
                       <option value="annually">/ Year</option>
                       <option value="monthly">/ Month</option>
                       <option value="biweekly">/ 2 Weeks</option>
@@ -180,10 +183,11 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Filing Status</label>
-                <div className="grid grid-cols-2 gap-3">
-                  <button onClick={() => setFilingStatus('single')} className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${filingStatus === 'single' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>Single</button>
-                  <button onClick={() => setFilingStatus('married')} className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${filingStatus === 'married' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>Married</button>
+                {/* 🔴 التعديل هنا لدعم إمكانية الوصول في الأزرار */}
+                <div id="filingStatusLabel" className="block text-sm font-medium text-slate-700 mb-2">Filing Status</div>
+                <div role="group" aria-labelledby="filingStatusLabel" className="grid grid-cols-2 gap-3">
+                  <button aria-pressed={filingStatus === 'single'} onClick={() => setFilingStatus('single')} className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${filingStatus === 'single' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>Single</button>
+                  <button aria-pressed={filingStatus === 'married'} onClick={() => setFilingStatus('married')} className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors ${filingStatus === 'married' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>Married</button>
                 </div>
               </div>
             </div>

@@ -19,10 +19,9 @@ export default function Contact() {
             access_key: "23b65aa3-29ea-428e-824b-3d57392a4d08",
             name: e.target.name.value,
             email: e.target.email.value,
-            subject: e.target.subject.value, // تم التبسيط لأن الحقل مطلوب
+            subject: e.target.subject.value, 
             message: e.target.message.value,
             redirect: "https://californiataxcalculators.com/contact",
-            // تفعيل أو تعطيل كابتشا Web3Forms (false لتجربة مستخدم سلسة بدون مقاطعة)
             captcha: false 
         };
 
@@ -98,7 +97,7 @@ export default function Contact() {
                     {isSubmitted ? (
                         <div 
                             className="bg-green-50 border border-green-200 text-green-800 rounded-2xl p-8 text-center animate-fade-in"
-                            aria-live="polite" // تحسين Accessibility
+                            aria-live="polite" 
                         >
                             <div className="text-4xl mb-4">✅</div>
                             <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
@@ -123,12 +122,14 @@ export default function Contact() {
                             />
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
                                 <input
+                                    id="name"
                                     type="text"
                                     name="name"
                                     required
-                                    maxLength="100" // تحسين الأمان
+                                    maxLength="100" 
                                     placeholder="Your name"
                                     className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition disabled:opacity-50"
                                     disabled={loading}
@@ -136,12 +137,14 @@ export default function Contact() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
                                 <input
+                                    id="email"
                                     type="email"
                                     name="email"
                                     required
-                                    maxLength="100" // تحسين الأمان
+                                    maxLength="100" 
                                     placeholder="your@email.com"
                                     className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition disabled:opacity-50"
                                     disabled={loading}
@@ -149,12 +152,14 @@ export default function Contact() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Subject</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="subject" className="block text-sm font-semibold text-slate-700 mb-2">Subject</label>
                                 <input
+                                    id="subject"
                                     type="text"
                                     name="subject"
                                     required
-                                    maxLength="150" // تحسين الأمان
+                                    maxLength="150" 
                                     placeholder="How can we help?"
                                     className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition disabled:opacity-50"
                                     disabled={loading}
@@ -162,12 +167,14 @@ export default function Contact() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
                                 <textarea
+                                    id="message"
                                     name="message"
                                     rows="5"
                                     required
-                                    maxLength="1000" // تحسين الأمان
+                                    maxLength="1000" 
                                     placeholder="Write your message..."
                                     className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-y disabled:opacity-50"
                                     disabled={loading}

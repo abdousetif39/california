@@ -173,8 +173,10 @@ export default function CaliforniaSalaryAfterTax() {
                         
                         <div className="space-y-6">
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Gross Salary ($)</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="grossSalary" className="block text-sm font-semibold text-slate-700 mb-2">Gross Salary ($)</label>
                                 <input 
+                                    id="grossSalary"
                                     type="number" 
                                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none"
                                     value={grossSalary || ''}
@@ -184,8 +186,10 @@ export default function CaliforniaSalaryAfterTax() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Pay Frequency</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="frequency" className="block text-sm font-semibold text-slate-700 mb-2">Pay Frequency</label>
                                 <select 
+                                    id="frequency"
                                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
                                     value={frequency}
                                     onChange={(e) => setFrequency(e.target.value)}
@@ -198,8 +202,10 @@ export default function CaliforniaSalaryAfterTax() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Filing Status</label>
+                                {/* 🔴 إضافة htmlFor و id */}
+                                <label htmlFor="filingStatus" className="block text-sm font-semibold text-slate-700 mb-2">Filing Status</label>
                                 <select 
+                                    id="filingStatus"
                                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
                                     value={filingStatus}
                                     onChange={(e) => setFilingStatus(e.target.value)}
