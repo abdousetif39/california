@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
-// افترضت أن مسار الملف صحيح لديك
 import citiesData from '../../data/ca-cities.json';
-// تأكد من وجود مكون AdUnit أو قم بإزالته مؤقتاً إذا لم يكن موجوداً
-import AdUnit from '../../components/AdUnit';
+import AdBanner from '../../components/AdBanner'; // 🟢 تم توحيد اسم مكون الإعلان
 
 export async function getStaticPaths() {
   const paths = citiesData.map((city) => ({
@@ -35,7 +33,7 @@ export default function CitySalesTax({ cityData }) {
   
   const internalLinks = citiesData.filter(c => c.slug !== cityData.slug).slice(0, 9);
 
-  // حساب الفرق بين ضريبة الولاية الأساسية وضريبة المدينة (لإضافته في النص الديناميكي)
+  // حساب الفرق بين ضريبة الولاية الأساسية وضريبة المدينة
   const baseRate = 7.25;
   const localTaxDifference = (cityData.rate - baseRate).toFixed(2);
 
@@ -137,7 +135,7 @@ export default function CitySalesTax({ cityData }) {
                 </div>
               </div>
 
-              {/* 🔴 قسم المحتوى النصي الغني الجديد (لإرضاء أدسنس) 🔴 */}
+              {/* 🔴 قسم المحتوى النصي الغني */}
               <div className="bg-white rounded-2xl shadow-sm p-8 border border-slate-100 prose prose-slate max-w-none">
                  <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Understanding the {cityData.rate}% Sales Tax in {cityData.name}</h2>
                  <p className="leading-relaxed text-slate-700">
@@ -151,8 +149,10 @@ export default function CitySalesTax({ cityData }) {
                  </p>
               </div>
 
-              {/* ✅ إعلان AdSense يظهر تحت الحاسبة مباشرة */}
-              {/* <AdUnit slot="auto" format="fluid" /> */}
+              {/* ✅ إعلان AdSense يظهر تحت المحتوى مباشرة */}
+              <div className="my-8">
+                  <AdBanner dataAdSlot="XXXXXXXXXX" /> 
+              </div>
           </div>
 
           {/* --- 2. الشريط الجانبي (المعلومات وروابط أخرى) --- */}
@@ -211,10 +211,8 @@ export default function CitySalesTax({ cityData }) {
                 <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                 Quick Reference: {cityData.name} Tax on Common Amounts
             </h2>
-            {/* استخدمنا overflow-x-auto للسماح بالتمرير في الجوال */}
-<div className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-    <table className="min-w-[500px] w-full divide-y divide-slate-200">
-
+            <div className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+                <table className="min-w-[500px] w-full divide-y divide-slate-200">
                     <thead className="bg-slate-50">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Purchase Amount</th>
