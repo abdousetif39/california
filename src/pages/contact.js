@@ -58,29 +58,30 @@ export default function Contact() {
     return (
         <Layout>
             <Head>
-                <title>Contact Us | California Tax Calculators</title>
-                <meta name="description" content="Have questions or feedback? Contact the California Tax Calculators team." />
-                <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://californiataxcalculators.com/contact" />
-                
-                <meta property="og:title" content="Contact California Tax Calculators" />
-                <meta property="og:description" content="Have questions or feedback? Contact the California Tax Calculators team." />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://californiataxcalculators.com/contact" />
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
-                
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "ContactPage",
-                            "name": "Contact California Tax Calculators",
-                            "url": "https://californiataxcalculators.com/contact"
-                        })
-                    }}
-                />
-            </Head>
+    <title>Contact Us | California Tax Calculators</title>
+    <meta name="description" content="Have questions or feedback? Contact the California Tax Calculators team." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://californiataxcalculators.com/contact" />
+    
+    <meta property="og:title" content="Contact California Tax Calculators" />
+    <meta property="og:description" content="Have questions or feedback? Contact the California Tax Calculators team." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://californiataxcalculators.com/contact" />
+    <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+    
+    <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ContactPage",
+                "name": "Contact California Tax Calculators",
+                "url": "https://californiataxcalculators.com/contact"
+            })
+        }}
+    />
+</Head>
+
 
             <div className="bg-blue-900 text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 text-center">

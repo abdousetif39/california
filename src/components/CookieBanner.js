@@ -24,101 +24,128 @@ export default function CookieBanner() {
         }
     }, [isLoaded, consent]);
 
+    // 1. عند الضغط على الموافقة على الكل
     const handleAcceptAll = () => {
         updateConsent({ necessary: true, analytics: true, marketing: true });
         setShowBanner(false);
+
+        // إخبار جوجل بأن المستخدم وافق على الإعلانات والإحصائيات
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'analytics_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
     };
 
+    // 2. عند الضغط على الرفض
     const handleRejectAll = () => {
         updateConsent({ necessary: true, analytics: false, marketing: false });
         setShowBanner(false);
+        
+        // إخبار جوجل بتأكيد الرفض
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied'
+            });
+        }
     };
 
+    // 3. عند الضغط على حفظ التفضيلات المخصصة
     const handleSavePreferences = () => {
         updateConsent(preferences);
         setShowBanner(false);
         setShowPreferences(false);
+
+        // تحديث جوجل بناءً على اختيارات المستخدم الدقيقة
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'ad_storage': preferences.marketing ? 'granted' : 'denied',
+                'analytics_storage': preferences.analytics ? 'granted' : 'denied',
+                'ad_user_data': preferences.marketing ? 'granted' : 'denied',
+                'ad_personalization': preferences.marketing ? 'granted' : 'denied'
+            });
+        }
     };
 
+    // تبديل أزرار التفضيلات (تشغيل/إيقاف)
     const togglePreference = (key) => {
         setPreferences(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
-    if (!isLoaded || (consent !== null && !showBanner)) return null;
+    // إذا كان الشريط مخفياً، لا تقم بعرض أي شيء
+    if (!showBanner) return null;
 
     return (
-        <div 
-            role="dialog" 
-            aria-live="polite" 
-            aria-label="Cookie consent banner"
-            className={`fixed bottom-0 left-0 right-0 z-50 transition-transform duration-700 ease-in-out ${showBanner ? 'translate-y-0' : 'translate-y-full'}`}
-        >
-            <div className="bg-slate-900 border-t border-slate-700 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                <div className="max-w-7xl mx-auto p-4 md:p-6">
+        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 md:p-8 pointer-events-none">
+            <div className="max-w-6xl mx-auto pointer-events-auto">
+                <div className="bg-slate-900 text-slate-300 p-6 sm:p-8 rounded-2xl shadow-2xl border border-slate-700/50 backdrop-blur-md">
                     
-                    {/* واجهة التفضيلات (Manage Preferences) */}
                     {showPreferences ? (
-                        <div className="space-y-6 animate-fade-in">
-                            <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <h3 className="text-xl font-bold text-white">Manage Cookie Preferences</h3>
-                                <button onClick={() => setShowPreferences(false)} className="text-slate-400 hover:text-white transition">
-                                    ✕
-                                </button>
+                        /* ----- واجهة إدارة التفضيلات (Manage) ----- */
+                        <div className="space-y-6">
+                            <div>
+                                <h3 className="text-xl font-bold text-white mb-2">Cookie Preferences</h3>
+                                <p className="text-sm text-slate-400">Manage how we use cookies on our site.</p>
                             </div>
                             
                             <div className="space-y-4">
-                                {/* Necessary Cookies */}
-                                <div className="flex items-center justify-between">
+                                {/* ملفات الارتباط الضرورية */}
+                                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700">
                                     <div>
-                                        <h4 className="font-semibold text-slate-200">Strictly Necessary</h4>
-                                        <p className="text-sm text-slate-400">Required for the website to function.</p>
+                                        <h4 className="text-white font-semibold">Strictly Necessary</h4>
+                                        <p className="text-xs text-slate-400 mt-1">Required for the website to function properly.</p>
                                     </div>
-                                    <div className="text-blue-500 font-bold text-sm bg-blue-500/10 px-3 py-1 rounded-full">Always Active</div>
+                                    <div className="text-blue-400 font-bold text-sm">Always Active</div>
                                 </div>
 
-                                {/* Analytics Cookies */}
-                                <div className="flex items-center justify-between border-t border-slate-700 pt-4">
+                                {/* إحصائيات جوجل */}
+                                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700">
                                     <div>
-                                        <h4 className="font-semibold text-slate-200">Analytics</h4>
-                                        <p className="text-sm text-slate-400">Help us understand how visitors interact with our website.</p>
+                                        <h4 className="text-white font-semibold">Analytics Cookies</h4>
+                                        <p className="text-xs text-slate-400 mt-1">Help us improve by measuring website usage (Google Analytics).</p>
                                     </div>
                                     <label className="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" className="sr-only peer" checked={preferences.analytics} onChange={() => togglePreference('analytics')} />
-                                        <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <div className="w-11 h-6 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                     </label>
                                 </div>
 
-                                {/* Marketing Cookies */}
-                                <div className="flex items-center justify-between border-t border-slate-700 pt-4">
+                                {/* إعلانات جوجل */}
+                                <div className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700">
                                     <div>
-                                        <h4 className="font-semibold text-slate-200">Marketing & Ads</h4>
-                                        <p className="text-sm text-slate-400">Used to deliver personalized advertisements (AdSense).</p>
+                                        <h4 className="text-white font-semibold">Marketing & Ads</h4>
+                                        <p className="text-xs text-slate-400 mt-1">Used to deliver relevant advertisements (Google AdSense).</p>
                                     </div>
                                     <label className="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" className="sr-only peer" checked={preferences.marketing} onChange={() => togglePreference('marketing')} />
-                                        <div className="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <div className="w-11 h-6 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                     </label>
                                 </div>
                             </div>
 
-                            <div className="flex gap-4 pt-4">
-                                <button onClick={handleSavePreferences} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all">
-                                    Save Preferences
-                                </button>
+                            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-700">
+                                <button onClick={() => setShowPreferences(false)} className="w-full sm:w-auto bg-transparent border-2 border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white font-bold py-2.5 px-6 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-slate-500">Back</button>
+                                <div className="flex-1"></div>
+                                <button onClick={handleSavePreferences} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-xl transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save Preferences</button>
                             </div>
                         </div>
                     ) : (
-                        /* الواجهة الأساسية (Banner) */
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-                            <div className="text-slate-300 text-sm md:text-base text-center lg:text-left leading-relaxed flex-grow">
-                                We use cookies to enhance your browsing experience, serve personalized ads, and analyze our traffic. 
-                                By clicking "Accept All", you consent to our use of cookies.
-                                <Link href="/privacy" className="text-blue-400 hover:text-blue-300 font-semibold underline ml-2 whitespace-nowrap">
-                                    Privacy Policy
-                                </Link>
+                        /* ----- الواجهة الرئيسية لشريط الموافقة ----- */
+                        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8">
+                            <div className="flex-1">
+                                <h3 className="text-xl font-bold text-white mb-2">We value your privacy</h3>
+                                <p className="text-sm text-slate-400 leading-relaxed">
+                                    We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. 
+                                    <Link href="/privacy" className="text-blue-400 hover:text-blue-300 hover:underline ml-1">Read our Privacy Policy.</Link>
+                                </p>
                             </div>
-
-                            <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3 flex-shrink-0">
+                            <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3 shrink-0">
                                 <button 
                                     onClick={() => setShowPreferences(true)}
                                     className="w-full sm:w-auto bg-transparent border-2 border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white font-bold py-2.5 px-6 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-slate-500"

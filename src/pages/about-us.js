@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import * as Icons from '../components/Icons';
+import Link from 'next/link';
 
 export default function AboutUs() {
     return (
@@ -10,7 +10,6 @@ export default function AboutUs() {
                 <meta name="description" content="Learn about our mission to provide Californians with the most accurate, updated, and easy-to-use tax estimation tools for 2026." />
                 <link rel="canonical" href="https://californiataxcalculators.com/about-us" />
                 
-                {/* Schema Markup for SEO */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -47,13 +46,14 @@ export default function AboutUs() {
                         </div>
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
                             <h3 className="font-bold text-slate-900 mb-2">User Centric</h3>
-                            <p className="text-sm text-slate-600">No ads-clutter, no complicated jargon. Just the numbers you need in seconds.</p>
+                            <p className="text-sm text-slate-600">A clean, distraction-free interface with no complicated jargon. Just the numbers you need in seconds.</p>
                         </div>
                     </div>
 
                     <h2 className="text-3xl font-bold mb-6 text-blue-900">Who We Are</h2>
                     <p className="text-lg leading-relaxed">
-                        We are a dedicated team of finance enthusiasts and developers focused on creating the best-in-class financial tools for California residents. Our goal is to remain the #1 trusted resource for tax estimations in CA.
+                        We are a dedicated team of finance enthusiasts and developers focused on creating the best-in-class financial tools for California residents. Our goal is to remain the #1 trusted resource for tax estimations in CA. 
+                        {" "}If you have any questions or feedback, please <Link href="https://californiataxcalculators.com/contact" className="text-blue-600 hover:underline font-semibold">contact us</Link>.
                     </p>
 
                     <h2 className="text-3xl font-bold mb-6 mt-12 text-blue-900">How Our Tax Calculators Work</h2>
@@ -61,7 +61,6 @@ export default function AboutUs() {
                         Our calculators are designed to provide quick tax estimates based on publicly available federal and California tax brackets. By combining federal income tax rules, California state tax rates, and payroll deductions such as Social Security and Medicare, we provide users with an easy way to estimate their potential take-home pay.
                     </p>
 
-                    {/* Disclaimer / Transparency Box */}
                     <div className="bg-amber-50 border-l-4 border-amber-500 p-6 my-8 rounded-r-lg">
                         <h3 className="text-xl font-bold text-amber-900 mb-3">Our Commitment to Transparency</h3>
                         <p className="text-lg leading-relaxed text-amber-800 m-0">
@@ -69,7 +68,6 @@ export default function AboutUs() {
                         </p>
                     </div>
 
-                    {/* Our Vision Section */}
                     <h2 className="text-3xl font-bold mb-6 mt-12 text-blue-900">Our Vision</h2>
                     <p className="text-lg leading-relaxed">
                         Our long-term vision is to become the most trusted online resource for California tax estimation tools. As tax laws evolve, we will continue expanding our calculators, guides, and educational resources to help residents make informed financial decisions with confidence.
