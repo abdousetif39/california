@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import citiesData from '../../data/ca-cities.json';
-import AdBanner from '../../components/AdBanner'; // 🟢 تم توحيد اسم مكون الإعلان
+import AdUnit from '../../components/AdUnit'; // ✅ تم التصحيح هنا
 
 export async function getStaticPaths() {
   const paths = citiesData.map((city) => ({
@@ -149,9 +149,9 @@ export default function CitySalesTax({ cityData }) {
                  </p>
               </div>
 
-              {/* ✅ إعلان AdSense يظهر تحت المحتوى مباشرة */}
+              {/* ✅ إعلان AdSense يظهر تحت المحتوى مباشرة - تم التصحيح هنا */}
               <div className="my-8">
-                  <AdBanner dataAdSlot="XXXXXXXXXX" /> 
+                  <AdUnit slot="auto" format="fluid" /> 
               </div>
           </div>
 
