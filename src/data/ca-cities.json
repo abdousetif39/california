@@ -167,6 +167,6 @@
   { "slug": "cypress", "name": "Cypress", "rate": 7.75, "county": "Orange", "population": 48000, "median_income": 93000 },
   { "slug": "san-gabriel", "name": "San Gabriel", "rate": 10.25, "county": "Los Angeles", "population": 39000, "median_income": 64000 },
   { "slug": "covina", "name": "Covina", "rate": 10.25, "county": "Los Angeles", "population": 47000, "median_income": 77000 },
-  { "slug": "azusa", "name": "Azusa", "rate": 10.25, "county": "Los Angeles", "population": 49000, "median_income": 65000 }
-  
+  { "slug": "azusa", "name": "Azusa", "rate": 10.25, "county": "Los Angeles", "population": 49000, "median_income": 65000 },
+  { "slug": "lemoore", "name": "Lemoore", "rate": 8.25, "county": "Kings", "population": 26000, "median_income": 62000 }
 ]
