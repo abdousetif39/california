@@ -19,8 +19,6 @@
   { "slug": "san-bernardino", "name": "San Bernardino", "rate": 8.75, "county": "San Bernardino", "population": 222000, "median_income": 52353 },
   { "slug": "modesto", "name": "Modesto", "rate": 8.88, "county": "Stanislaus", "population": 218000, "median_income": 62182 },
   { "slug": "fontana", "name": "Fontana", "rate": 8.75, "county": "San Bernardino", "population": 212000, "median_income": 75154 },
-  { "slug": "modesto", "name": "Modesto", "rate": 8.88, "county": "Stanislaus", "population": "218K", "median_income": 62182 },
-  { "slug": "fontana", "name": "Fontana", "rate": 8.75, "county": "San Bernardino", "population": "212K", "median_income": 75154 },
   { "slug": "moreno-valley", "name": "Moreno Valley", "rate": 8.75, "county": "Riverside", "population": 208000, "median_income": 73000 },
   { "slug": "oxnard", "name": "Oxnard", "rate": 9.25, "county": "Ventura", "population": 200000, "median_income": 76000 },
   { "slug": "huntington-beach", "name": "Huntington Beach", "rate": 7.75, "county": "Orange", "population": 198000, "median_income": 104000 },
