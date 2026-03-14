@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import '../styles/globals.css';
+import { Inter } from 'next/font/google'
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
 // المخطط الهيكلي للمنظمة يُعرف مرة واحدة لتحسين الأداء
 const organizationSchema = {
   "@context": "https://schema.org",
