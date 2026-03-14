@@ -67,7 +67,9 @@ export default function App({ Component, pageProps }) {
         crossOrigin="anonymous"
       />
 
-      <Component {...pageProps} />
+      <div className={inter.className}>
+  <Component {...pageProps} />
+</div>
     </>
   );
 }
