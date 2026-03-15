@@ -139,10 +139,10 @@ export default function CookieBanner() {
                         /* ----- الواجهة الرئيسية لشريط الموافقة ----- */
                         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-8">
                             <div className="flex-1">
-                                <h3 className="text-xl font-bold text-white mb-2">We value your privacy</h3>
+                                 <h3 className="text-xl font-bold text-white mb-2">We value your privacy</h3> 
                                 <p className="text-sm text-slate-400 leading-relaxed">
                                     We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. 
-                                    <Link href="/privacy" className="text-blue-400 hover:text-blue-300 hover:underline ml-1">Read our Privacy Policy.</Link>
+                                    <Link href="/privacy" className="text-blue-400 hover:text-blue-300 underline underline-offset-2 ml-1">Read our Privacy Policy.</Link>
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3 shrink-0">
