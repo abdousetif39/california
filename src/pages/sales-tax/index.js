@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Layout from '../components/Layout';
-import citiesData from '../data/ca-cities.json';
+import Layout from '../../components/Layout';
+import citiesData from '../../data/ca-cities.json';
 
 export default function SalesTax() {
     // 1. Calculator State
