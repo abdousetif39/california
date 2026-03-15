@@ -24,7 +24,7 @@ export default function Layout({ children }) {
                 <link rel="apple-touch-icon" href="/favicon.svg?v=1" />
 
                 {/* 2. وسوم فيسبوك ولينكد إن (Open Graph) */}
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
                 <meta property="og:title" content="California Tax Calculators 2026" />
@@ -35,13 +35,13 @@ export default function Layout({ children }) {
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="California Tax Calculators 2026" />
                 <meta name="twitter:description" content="Estimate your CA taxes accurately with our 2026 updated tools." />
-                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.webp" />
             </Head>
 
             {/* إدراج كود Google AdSense للإعلانات التلقائية (Auto Ads) */}
             <Script
                 id="adsbygoogle-init"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 crossOrigin="anonymous"
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-9939500626060842"
             />

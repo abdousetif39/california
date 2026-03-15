@@ -238,13 +238,14 @@ export default function Home() {
           </h2>
           
           <Image
-            src="/og-image.jpg"
-            alt="California income tax calculation and planning for 2026"
-            width={1200}
-            height={630}
-            sizes="(max-width: 768px) 100vw, 1200px"
-            className="w-full h-auto rounded-xl shadow-md border border-slate-200 my-8 object-cover max-h-96"
-          />
+  src="/og-image.webp"
+  alt="California income tax calculation and planning for 2026"
+  width={1200}
+  height={630}
+  priority
+  sizes="(max-width: 768px) 100vw, 1200px"
+  className="w-full h-auto rounded-xl shadow-md border border-slate-200 my-8 object-cover max-h-96"
+/>
 
           <p className="text-slate-600 leading-relaxed mb-4">
             California uses a progressive income tax system. This means that the tax rate you pay increases as your income rises. Instead of applying one flat rate to all income, California divides taxable income into brackets. Each bracket is taxed at a different rate.

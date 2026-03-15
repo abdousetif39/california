@@ -1,8 +1,14 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import '../styles/globals.css';
+import { Inter } from 'next/font/google';
 
-// المخطط الهيكلي للمنظمة يُعرف مرة واحدة لتحسين الأداء
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+// Schema المنظمة
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -13,22 +19,22 @@ const organizationSchema = {
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <div className={inter.className}>
+
       <Head>
-        <script 
-          type="application/ld+json" 
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      {/* 1. Google Consent Mode v2 - يجب أن ينفذ مبكراً */}
+      {/* Google Consent Mode */}
       <Script id="google-consent-mode" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           
-          // تعيين الحالة الافتراضية للرفض (denied) قبل تحميل Analytics أو AdSense
           gtag('consent', 'default', {
             'ad_storage': 'denied',
             'analytics_storage': 'denied',
@@ -38,24 +44,22 @@ export default function App({ Component, pageProps }) {
         `}
       </Script>
 
-      {/* 2. Google Analytics - تم تحويله إلى lazyOnload لإنقاذ الأداء! */}
+      {/* Google Analytics */}
       <Script 
-        src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6" 
-        strategy="lazyOnload" 
+        src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6"
+        strategy="lazyOnload"
       />
+
       <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          
-          // إعداد Analytics
           gtag('config', 'G-EEY8M1W1Y6');
         `}
       </Script>
 
-      {/* 3. Google AdSense - وضعناه هنا بالتحميل الذكي لمنع تدمير سرعة الموقع */}
-      {/* ⚠️ تنبيه: استبدل الرقم 99395... برقم الناشر (Publisher ID) الحقيقي الخاص بك */}
+      {/* Google AdSense */}
       <Script
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842"
         strategy="lazyOnload"
@@ -63,6 +67,7 @@ export default function App({ Component, pageProps }) {
       />
 
       <Component {...pageProps} />
-    </>
+
+    </div>
   );
 }

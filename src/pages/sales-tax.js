@@ -2,19 +2,15 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import citiesData from '../data/ca-cities.json';
+import citiesData from '../data/ca-cities.json'; // ✅ استيراد قاعدة بيانات المدن
 
 export default function SalesTax() {
     // 1. Calculator State
     const [amount, setAmount] = useState(100);
     const [taxRate, setTaxRate] = useState(7.25);
     const [result, setResult] = useState({ tax: 0, total: 0 });
-    
-    // 2. Search & Sort State
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredCities, setFilteredCities] = useState([]);
 
-    // 3. Calculation Logic
+    // 2. Calculation Logic
     useEffect(() => {
         const validAmount = amount || 0;
         const validRate = taxRate || 0;
@@ -25,19 +21,6 @@ export default function SalesTax() {
             total: validAmount + taxAmount
         });
     }, [amount, taxRate]);
-
-    // 4. Sorting & Filtering Logic
-    useEffect(() => {
-        // ترتيب المدن أبجدياً من A إلى Z
-        const sorted = [...citiesData].sort((a, b) => a.name.localeCompare(b.name));
-        
-        // تطبيق البحث
-        const filtered = sorted.filter(city => 
-            city.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        
-        setFilteredCities(filtered);
-    }, [searchTerm]);
 
     const formatCurrency = (val) => new Intl.NumberFormat('en-US', {
         style: 'currency', currency: 'USD'
@@ -137,57 +120,31 @@ export default function SalesTax() {
                             </div>
                         </div>
 
-                        {/* 2. قسم Hub: شبكة روابط المدن مع محرك البحث */}
-                        <div className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8" id="city-rates">
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                                <div>
-                                    <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                                        California City Rates Database
-                                    </h2>
-                                    <p className="text-slate-600 text-sm">
-                                        Select your city below or use the search bar to find accurate 2026 local district rates.
-                                    </p>
-                                </div>
-                                {/* شريط البحث الذكي */}
-                                <div className="w-full md:w-64 relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg className="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                        </svg>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="Search city..."
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-slate-700 bg-slate-50"
-                                    />
-                                </div>
-                            </div>
+                        {/* 2. قسم Hub: شبكة روابط المدن الديناميكية */}
+                        <div className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                                California City Sales Tax Calculators
+                            </h2>
+                            <p className="text-slate-600 mb-8">
+                                Find the exact sales tax rate for major cities across California. Click your city below to use a dedicated calculator with updated 2026 local district rates.
+                            </p>
 
-                            {/* شبكة المدن المفلترة والمرتبة */}
-                            {filteredCities.length > 0 ? (
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                                    {filteredCities.map((city) => (
-                                        <Link
-                                            key={city.slug}
-                                            href={`/sales-tax/${city.slug}`}
-                                            className="block p-4 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm transition-all group bg-white"
-                                        >
-                                            <span className="font-semibold text-slate-800 group-hover:text-blue-700 block mb-1 truncate" title={city.name}>
-                                                {city.name}
-                                            </span>
-                                            <span className="text-xs font-bold text-slate-500 uppercase">
-                                                {city.rate}% rate
-                                            </span>
-                                        </Link>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-12 bg-slate-50 rounded-xl border border-slate-200">
-                                    <p className="text-slate-500 font-medium">No city found matching "{searchTerm}"</p>
-                                </div>
-                            )}
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {citiesData.map((city) => (
+                                    <Link
+                                        key={city.slug}
+                                        href={`/sales-tax/${city.slug}`}
+                                        className="block p-4 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm transition-all group"
+                                    >
+                                        <span className="font-semibold text-slate-800 group-hover:text-blue-700 block mb-1">
+                                            {city.name}
+                                        </span>
+                                        <span className="text-xs font-bold text-slate-500 uppercase">
+                                            {city.rate}% rate
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
 
                         {/* 3. الشرح النظري */}
