@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import '../styles/globals.css';
 import { Inter } from 'next/font/google';
-
+import { Analytics } from '@vercel/analytics/react'; // تم النقل إلى هنا بنجاح
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
