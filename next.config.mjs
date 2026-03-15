@@ -9,23 +9,23 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // يمنع سرقة نقرات الموقع (Clickjacking)
+            value: 'SAMEORIGIN',
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload', // يفرض اتصال HTTPS قوي (HSTS)
+            value: 'max-age=63072000; includeSubDomains; preload',
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin', // يعزل النطاق بشكل صحيح (COOP)
+            value: 'same-origin',
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff', // يمنع المتصفح من تخمين نوع الملفات
+            value: 'nosniff',
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin', // حماية إضافية للروابط
+            value: 'origin-when-cross-origin',
           }
         ],
       },
@@ -33,4 +33,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
