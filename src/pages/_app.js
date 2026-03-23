@@ -3,6 +3,7 @@ import Script from 'next/script';
 import '../styles/globals.css';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react'; // تم النقل إلى هنا بنجاح
+import { useEffect } from 'react';
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -18,6 +19,17 @@ const organizationSchema = {
 };
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    const script = document.createElement('script');
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+  }, 4000);
+
+  return () => clearTimeout(timer);
+}, []);
   return (
     <div className={inter.className}>
 
@@ -59,20 +71,9 @@ export default function App({ Component, pageProps }) {
         `}
       </Script>
 
-      <Script
-  id="adsense-delayed"
-  strategy="lazyOnload"
->
-  {`
-    setTimeout(function() {
-      var script = document.createElement('script');
-      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842";
-      script.async = true;
-      script.crossOrigin = "anonymous";
-      document.body.appendChild(script);
-    }, 4000);
-  `}
-</Script>
+
+  
+
 
       <Component {...pageProps} />
 
