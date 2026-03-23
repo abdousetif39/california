@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import citiesData from '../../data/ca-cities.json';
 import AdUnit from '../../components/AdUnit'; // ✅ تم التصحيح هنا
+import SalesTaxContent from '../../components/SalesTaxContent';
+
 
 export async function getStaticPaths() {
   const paths = citiesData.map((city) => ({
@@ -99,7 +101,7 @@ export default function CitySalesTax({ cityData }) {
         <div className="grid md:grid-cols-3 gap-8">
             
           {/* --- 1. أداة الحاسبة --- */}
-          <div className="md:col-span-2 space-y-8">
+			<div className="md:col-span-2 space-y-8">
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
@@ -134,7 +136,12 @@ export default function CitySalesTax({ cityData }) {
                   </div>
                 </div>
               </div>
-
+				
+				<SalesTaxContent 
+    city={cityData.name} 
+    rate={cityData.rate} 
+  />
+				
               {/* 🔴 قسم المحتوى النصي الغني */}
               <div className="bg-white rounded-2xl shadow-sm p-8 border border-slate-100 prose prose-slate max-w-none">
                  <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Understanding the {cityData.rate}% Sales Tax in {cityData.name}</h2>

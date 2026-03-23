@@ -1,20 +1,24 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* إعدادات الخطوط (Inter) - تم الاحتفاظ بها */}
-        
 
-        {/* إعداد الحالة الافتراضية لـ Google Consent Mode v2 */}
+        {/* ✅ Google AdSense (الطريقة الصحيحة) */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842"
+          crossOrigin="anonymous"
+        ></script>
+
+        {/* ✅ Google Consent Mode */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              
-              // الحالة الافتراضية: رفض كل شيء حتى يوافق المستخدم
+
               gtag('consent', 'default', {
                 'ad_storage': 'denied',
                 'analytics_storage': 'denied',
@@ -24,7 +28,9 @@ export default function Document() {
             `,
           }}
         />
+
       </Head>
+
       <body>
         <Main />
         <NextScript />

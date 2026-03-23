@@ -332,7 +332,12 @@ export default function Home() {
                 ))}
             </div>
         </section>
-
+		
+		<div className="mt-12 text-center text-sm text-slate-500 max-w-2xl mx-auto">
+  This website provides estimated tax calculations for informational purposes only. 
+  It does not constitute financial, legal, or tax advice. Always consult a qualified professional.
+</div>
+		
       </main>
     </Layout>
   );

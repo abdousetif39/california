@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import citiesData from '../../data/ca-cities.json';
+import SalesTaxContent from '../../components/SalesTaxContent';
+
 
 export default function SalesTax() {
     // 1. Calculator State
@@ -25,7 +27,7 @@ export default function SalesTax() {
             total: validAmount + taxAmount
         });
     }, [amount, taxRate]);
-
+	
     // 4. Sorting & Filtering Logic
     useEffect(() => {
         // ترتيب المدن أبجدياً من A إلى Z
@@ -136,7 +138,10 @@ export default function SalesTax() {
                                 </div>
                             </div>
                         </div>
-
+						
+						
+						<SalesTaxContent />					
+						
                         {/* 2. قسم Hub: شبكة روابط المدن مع محرك البحث */}
                         <div className="mt-12 bg-white rounded-2xl shadow-lg border border-slate-100 p-8" id="city-rates">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
@@ -164,7 +169,7 @@ export default function SalesTax() {
                                     />
                                 </div>
                             </div>
-
+								
                             {/* شبكة المدن المفلترة والمرتبة */}
                             {filteredCities.length > 0 ? (
                                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
@@ -189,7 +194,7 @@ export default function SalesTax() {
                                 </div>
                             )}
                         </div>
-
+						
                         {/* 3. الشرح النظري */}
                         <div className="bg-white rounded-2xl shadow-lg p-8 border border-slate-100">
                             <h2 className="text-2xl font-bold text-slate-900 mb-4">How California Sales Tax Works</h2>

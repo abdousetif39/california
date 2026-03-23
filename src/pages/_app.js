@@ -59,12 +59,7 @@ export default function App({ Component, pageProps }) {
         `}
       </Script>
 
-      {/* Google AdSense */}
-      <Script
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842"
-        strategy="lazyOnload"
-        crossOrigin="anonymous"
-      />
+      
 
       <Component {...pageProps} />
 
