@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout from '../components/Layout';
+import dynamic from 'next/dynamic';
+
+const Layout = dynamic(() => import('../components/Layout'), {
+  ssr: false,
+});
 import * as Icons from '../components/Icons';
 import citiesData from '../data/ca-cities.json';
 
