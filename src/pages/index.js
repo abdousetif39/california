@@ -141,13 +141,11 @@ export default function Home() {
         <div className="absolute top-4 right-4 md:top-8 md:right-8 flex flex-col items-end">
             <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-medium border border-white/20 shadow-lg flex items-center gap-2">
                 <Icons.Clock />
-                {
-                  <span>
-                      {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
-                  </span>
-                )}
+                <span>
+  {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+</span>
             </div>
-            {timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
+			{ timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">California Paycheck Calculator</h1>
