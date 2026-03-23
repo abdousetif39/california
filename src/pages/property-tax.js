@@ -39,12 +39,12 @@ export default function PropertyTax() {
                 <meta property="og:title" content="California Property Tax Calculator 2026" />
                 <meta property="og:description" content="Quickly calculate your annual property taxes under Proposition 13 limits." />
                 <meta property="og:url" content="https://californiataxcalculators.com/property-tax" />
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
+                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
                 
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="California Property Tax Calculator 2026" />
                 <meta name="twitter:description" content="Estimate your California property taxes using our Prop 13 calculator." />
-                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.webp" />
+                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
 
                 {/* البيانات المهيكلة JSON-LD */}
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([

@@ -67,7 +67,7 @@ export default function Contact() {
     <meta property="og:description" content="Have questions or feedback? Contact the California Tax Calculators team." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://californiataxcalculators.com/contact" />
-    <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
+    <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
     
     <script
         type="application/ld+json"

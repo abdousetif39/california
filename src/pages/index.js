@@ -240,7 +240,7 @@ export default function Home() {
           </h2>
           
           <Image
-  src="/og-image.webp"
+  src="/og-image.jpg"
   alt="California income tax calculation and planning for 2026"
   width={1200}
   height={630}
