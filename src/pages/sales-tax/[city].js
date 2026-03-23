@@ -73,11 +73,21 @@ export default function CitySalesTax({ cityData }) {
   return (
     <Layout>
       <Head>
-        <title>{`${cityData.name}, CA Sales Tax Calculator 2026 (${cityData.rate}%)`}</title>
-        <meta name="description" content={`Calculate sales tax in ${cityData.name}, California (${cityData.county} County). The 2026 local tax rate is ${cityData.rate}%. See exact tax amounts for your purchases.`} />
-        <link rel="canonical" href={`https://californiataxcalculators.com/sales-tax/${cityData.slug}`} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      </Head>
+  <title>{`${cityData.name}, CA Sales Tax Calculator 2026 (${cityData.rate}%)`}</title>
+  
+  <meta name="description" content={`Calculate sales tax in ${cityData.name}, California (${cityData.county} County).`} />
+  
+  <link rel="canonical" href={`https://californiataxcalculators.com/sales-tax/${cityData.slug}`} />
+
+  {/* ✅ Open Graph */}
+  <meta property="og:title" content={`${cityData.name} Sales Tax Calculator (${cityData.rate}%)`} />
+  <meta property="og:description" content={`Calculate sales tax in ${cityData.name}, CA. Current rate: ${cityData.rate}%.`} />
+  <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+  <meta property="og:url" content={`https://californiataxcalculators.com/sales-tax/${cityData.slug}`} />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+</Head>
 
       <div className="bg-slate-900 text-white pb-24 pt-16 mt-[-64px]">
         <div className="max-w-4xl mx-auto px-4 text-center mt-12">
