@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
       </Head>
 
       {/* Google Consent Mode */}
-      <Script id="google-consent-mode" strategy="afterInteractive">
+      <Script id="google-consent-mode" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
