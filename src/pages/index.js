@@ -246,7 +246,7 @@ export default function Home() {
   alt="California income tax calculation and planning for 2026"
   width={1200}
   height={630}
-  priority
+ 
   sizes="(max-width: 768px) 100vw, 1200px"
   className="w-full h-auto rounded-xl shadow-md border border-slate-200 my-8 object-cover max-h-96"
 />
