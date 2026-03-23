@@ -38,13 +38,7 @@ export default function Layout({ children }) {
                 <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.webp" />
             </Head>
 
-            {/* إدراج كود Google AdSense للإعلانات التلقائية (Auto Ads) */}
-            <Script
-                id="adsbygoogle-init"
-                strategy="lazyOnload"
-                crossOrigin="anonymous"
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-9939500626060842"
-            />
+            
 
             <Navbar />
             
