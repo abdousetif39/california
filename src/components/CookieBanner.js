@@ -19,7 +19,7 @@ export default function CookieBanner() {
         // إظهار الشريط فقط إذا تم التحميل ولم تكن هناك موافقة مسبقة
         if (isLoaded && consent === null) {
             // تأخير بسيط لإعطاء تأثير دخول سلس (Animation)
-            const timer = setTimeout(() => setShowBanner(true), 500);
+            const timer = setTimeout(() => setShowBanner(true), 5000);
             return () => clearTimeout(timer);
         }
     }, [isLoaded, consent]);
