@@ -45,10 +45,10 @@ export default function App({ Component, pageProps }) {
       </Script>
 
       {/* Google Analytics */}
-      <Script 
-        src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6"
-        strategy="lazyOnload"
-      />
+      <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6"
+  strategy="afterInteractive"
+/>
 
       <Script id="google-analytics" strategy="lazyOnload">
         {`
@@ -59,7 +59,20 @@ export default function App({ Component, pageProps }) {
         `}
       </Script>
 
-      
+      <Script
+  id="adsense-delayed"
+  strategy="lazyOnload"
+>
+  {`
+    setTimeout(function() {
+      var script = document.createElement('script');
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+    }, 4000);
+  `}
+</Script>
 
       <Component {...pageProps} />
 

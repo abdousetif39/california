@@ -5,12 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
 
-        {/* ✅ Google AdSense (الطريقة الصحيحة) */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9939500626060842"
-          crossOrigin="anonymous"
-        ></script>
+        
 
         {/* ✅ Google Consent Mode */}
         <script
