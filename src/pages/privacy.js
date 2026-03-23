@@ -17,7 +17,7 @@ export default function Privacy() {
         <meta property="og:title" content="Privacy Policy - California Tax Calculators" />
         <meta property="og:description" content="Your privacy is our priority." />
         <meta property="og:url" content="https://californiataxcalculators.com/privacy" />
-        <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+        <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
         <meta property="og:type" content="article" />
 
         <meta name="twitter:card" content="summary" />

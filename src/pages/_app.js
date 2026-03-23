@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }) {
       </Head>
 
       {/* Google Consent Mode */}
-      <Script id="google-consent-mode" strategy="afterInteractive">
+      <Script id="google-consent-mode" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -59,7 +59,7 @@ export default function App({ Component, pageProps }) {
       {/* Google Analytics */}
       <Script
   src="https://www.googletagmanager.com/gtag/js?id=G-EEY8M1W1Y6"
-  strategy="afterInteractive"
+  strategy="lazyOnload"
 />
 
       <Script id="google-analytics" strategy="lazyOnload">

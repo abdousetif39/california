@@ -81,14 +81,14 @@ export default function CaliforniaSalaryAfterTax() {
                 <meta property="og:title" content="California Salary After Tax Calculator 2026" />
                 <meta property="og:description" content="Easily calculate your exact take-home pay in California with our free 2026 salary after tax calculator." />
                 <meta property="og:url" content="https://californiataxcalculators.com/california-salary-after-tax" />
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="California Tax Calculators" />
 
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="California Salary After Tax Calculator 2026" />
                 <meta name="twitter:description" content="Estimate your California take-home pay after federal, state, and FICA taxes." />
-                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.webp" />
 
                 {/* SoftwareApplication Schema for the Calculator */}
                 <script 

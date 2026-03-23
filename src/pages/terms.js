@@ -18,13 +18,13 @@ export default function TermsOfUse() {
         <meta property="og:title" content="Terms of Use - California Tax Calculators" />
         <meta property="og:description" content="Please read our terms of use and professional disclaimer regarding our tax tools." />
         <meta property="og:url" content="https://californiataxcalculators.com/terms" />
-        <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+        <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary" />
         {/* ✅ تم إضافة Twitter Meta Tags */}
         <meta name="twitter:title" content="Terms of Use - California Tax Calculators" />
         <meta name="twitter:description" content="Please read our terms of use and professional disclaimer regarding our tax tools." />
-        <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
+        <meta name="twitter:image" content="https://californiataxcalculators.com/og-image.webp" />
         
         {/* ✅ Schema المحسن */}
         <script

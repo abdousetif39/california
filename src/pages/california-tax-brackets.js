@@ -15,7 +15,7 @@ export default function CaliforniaTaxBrackets() {
         <meta property="og:title" content="California Tax Brackets 2026 - CA Income Tax Rates" />
         <meta property="og:description" content="Updated 2026 California tax brackets and income tax rates. View CA tax tables for Single and Married Filing Jointly." />
         <meta property="og:url" content="https://californiataxcalculators.com/california-tax-brackets" />
-        <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+        <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
         <meta property="og:site_name" content="California Tax Calculators" />
         <meta property="og:type" content="article" />
 

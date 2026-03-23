@@ -35,7 +35,7 @@ export default function Resources() {
                 <meta property="og:title" content="California Tax Resources & Official Guides 2026" />
                 <meta property="og:description" content="The complete hub for California tax guides, official links, and filing information." />
                 <meta property="og:url" content="https://californiataxcalculators.com/resources" />
-                <meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+                <meta property="og:image" content="https://californiataxcalculators.com/og-image.webp" />
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="California Tax Calculators" />
                 <meta name="twitter:card" content="summary_large_image" />
