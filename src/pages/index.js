@@ -90,6 +90,12 @@ export default function Home() {
       <Head>
         <title>California Tax Calculator 2026 | Paycheck & Income Estimator</title>
         <meta name="description" content="Free and accurate California tax calculator for 2026. Estimate your net pay, federal tax, state tax, and FICA withholdings." />
+		{/* ✅ Open Graph */}
+<meta property="og:title" content="California Tax Calculator 2026 | Paycheck & Income Estimator" />
+<meta property="og:description" content="Free and accurate California tax calculator for 2026. Estimate your net pay, federal tax, state tax, and FICA withholdings." />
+<meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
+<meta property="og:url" content="https://californiataxcalculators.com/" />
+<meta property="og:type" content="website" />
         <link rel="canonical" href="https://californiataxcalculators.com/" />
         
         <meta name="robots" content="index, follow" />
