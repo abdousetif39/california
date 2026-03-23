@@ -5,10 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
 
-        <meta
-  httpEquiv="Content-Security-Policy"
-  content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://pagead2.googlesyndication.com https://fundingchoicesmessages.google.com https://ep2.adtrafficquality.google; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;"
-/>
+       
 
         {/* ✅ Google Consent Mode */}
         <script
