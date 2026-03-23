@@ -11,7 +11,7 @@ import * as Icons from '../components/Icons';
 import citiesData from '../data/ca-cities.json';
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
+  
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timeZone, setTimeZone] = useState('');
 
@@ -23,7 +23,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    setMounted(true);
+    
     try { 
       const resolved = Intl.DateTimeFormat().resolvedOptions().timeZone; 
       setTimeZone(resolved.replace('_', ' ')); 
@@ -141,13 +141,13 @@ export default function Home() {
         <div className="absolute top-4 right-4 md:top-8 md:right-8 flex flex-col items-end">
             <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-medium border border-white/20 shadow-lg flex items-center gap-2">
                 <Icons.Clock />
-                {mounted && (
+                {
                   <span>
                       {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 )}
             </div>
-            {mounted && timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
+            {timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">California Paycheck Calculator</h1>
