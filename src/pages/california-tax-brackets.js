@@ -9,7 +9,7 @@ export default function CaliforniaTaxBrackets() {
         <title>California Tax Brackets 2026 - CA Income Tax Rates & Tables</title>
         <meta name="description" content="Updated 2026 California tax brackets and income tax rates. View CA tax tables for Single and Married Filing Jointly to understand your state tax liability." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://californiataxcalculators.com/california-tax-brackets" />
+        <link rel="canonical" href="https://www.californiataxcalculators.com/california-tax-brackets" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
         <meta property="og:title" content="California Tax Brackets 2026 - CA Income Tax Rates" />

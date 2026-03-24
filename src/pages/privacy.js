@@ -11,7 +11,7 @@ export default function Privacy() {
         <meta name="description" content="Privacy Policy for CaliforniaTaxCalculators.com." />
         <meta name="robots" content="index, follow" />
 
-        <link rel="canonical" href="https://californiataxcalculators.com/privacy" />
+        <link rel="canonical" href="https://www.californiataxcalculators.com/privacy" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
         <meta property="og:title" content="Privacy Policy - California Tax Calculators" />

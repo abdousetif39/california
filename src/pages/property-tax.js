@@ -33,7 +33,7 @@ export default function PropertyTax() {
                 <title>California Property Tax Calculator 2026 | Prop 13 Estimator</title>
                 <meta name="description" content="Use our California Property Tax Calculator to estimate your annual property taxes based on assessed home value and Prop 13 limits. Updated for 2026." />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://californiataxcalculators.com/property-tax" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/property-tax" />
                 
                 {/* وسوم التواصل الاجتماعي */}
                 <meta property="og:title" content="California Property Tax Calculator 2026" />

@@ -76,7 +76,7 @@ export default function CaliforniaSalaryAfterTax() {
                 <title>California Salary After Tax Calculator 2026 | Take Home Pay</title>
                 <meta name="description" content="Calculate your California salary after tax for 2026. Find out your exact take-home pay after Federal, State, FICA, and CA SDI deductions." />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://californiataxcalculators.com/california-salary-after-tax" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/california-salary-after-tax" />
                 
                 <meta property="og:title" content="California Salary After Tax Calculator 2026" />
                 <meta property="og:description" content="Easily calculate your exact take-home pay in California with our free 2026 salary after tax calculator." />

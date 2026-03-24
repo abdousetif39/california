@@ -86,7 +86,7 @@ export default function SalesTax() {
             <Head>
                 <title>California Sales Tax Calculator 2026 | City & County Rates</title>
                 <meta name="description" content="Calculate California sales tax for any city or county. Updated 2026 rates including local district taxes and state base rates." />
-                <link rel="canonical" href="https://californiataxcalculators.com/sales-tax" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/sales-tax" />
                 <meta name="robots" content="index, follow" />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
             </Head>

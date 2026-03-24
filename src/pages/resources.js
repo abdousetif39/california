@@ -29,7 +29,7 @@ export default function Resources() {
             <Head>
                 <title>California Tax Resources 2026 | Guides, Deadlines & Forms</title>
                 <meta name="description" content="The complete hub for California tax resources: access our in-depth guides, key filing deadlines for 2026, common tax forms, and official agency links." />
-                <link rel="canonical" href="https://californiataxcalculators.com/resources" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/resources" />
                 <meta name="robots" content="index, follow" />
                 
                 <meta property="og:title" content="California Tax Resources & Official Guides 2026" />

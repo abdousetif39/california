@@ -8,7 +8,7 @@ export default function AboutUs() {
             <Head>
                 <title>About Us | California Tax Calculators - Our Mission</title>
                 <meta name="description" content="Learn about our mission to provide Californians with the most accurate, updated, and easy-to-use tax estimation tools for 2026." />
-                <link rel="canonical" href="https://californiataxcalculators.com/about-us" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/about-us" />
                 
                 <script
                     type="application/ld+json"

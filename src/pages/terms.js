@@ -10,7 +10,7 @@ export default function TermsOfUse() {
         <title>Terms of Use - California Tax Calculators</title>
         <meta name="description" content="Terms of Use and Disclaimers for CaliforniaTaxCalculators.com." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://californiataxcalculators.com/terms" />
+        <link rel="canonical" href="https://www.californiataxcalculators.com/terms" />
         
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 

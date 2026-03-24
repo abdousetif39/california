@@ -61,7 +61,7 @@ export default function Contact() {
     <title>Contact Us | California Tax Calculators</title>
     <meta name="description" content="Have questions or feedback? Contact the California Tax Calculators team." />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://californiataxcalculators.com/contact" />
+    <link rel="canonical" href="https://www.californiataxcalculators.com/contact" />
     
     <meta property="og:title" content="Contact California Tax Calculators" />
     <meta property="og:description" content="Have questions or feedback? Contact the California Tax Calculators team." />

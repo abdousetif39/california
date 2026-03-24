@@ -9,7 +9,7 @@ export default function CaliforniaIncomeTaxGuide() {
             <Head>
                 <title>California Income Tax Guide 2026 | Brackets & Rates Explained</title>
                 <meta name="description" content="A complete guide to California state income tax for 2026. Learn how tax brackets work, federal vs state differences, payroll taxes, and view example calculations." />
-                <link rel="canonical" href="https://californiataxcalculators.com/california-income-tax-guide" />
+                <link rel="canonical" href="https://www.californiataxcalculators.com/california-income-tax-guide" />
                 
                 <meta property="og:title" content="California Income Tax Guide 2026" />
                 <meta property="og:description" content="Understand how California taxes your income with our comprehensive 2026 guide and tax bracket charts." />
