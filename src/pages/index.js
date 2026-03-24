@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-
 import Layout from '../components/Layout';
 import * as Icons from '../components/Icons';
 import citiesData from '../data/ca-cities.json';
@@ -325,7 +323,8 @@ export default function Home() {
                 {citiesData.slice(0, 8).map((city) => (
                     <Link
                         key={city.slug}
-                        href={`/sales-tax/${city.slug}`}
+                        href={`/sales-tax/${city.slug}`} 
+						prefetch={false}
                         className="p-4 border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 hover:shadow-sm transition-all text-center group"
                     >
                         <span className="block font-bold text-slate-800 group-hover:text-blue-700 transition-colors">
