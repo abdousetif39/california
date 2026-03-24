@@ -96,6 +96,12 @@ export default function Home() {
         
         <meta name="robots" content="index, follow" />
         
+		<!-- ✅ Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="California Tax Calculator 2026 | Paycheck & Income Estimator" />
+<meta name="twitter:description" content="Free and accurate California tax calculator for 2026. Estimate your net pay, federal tax, state tax, and FICA withholdings." />
+<meta name="twitter:image" content="https://californiataxcalculators.com/og-image.jpg" />
+<meta property="og:image:secure_url" content="https://californiataxcalculators.com/og-image.jpg" />
         {/* WebSite Schema */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
