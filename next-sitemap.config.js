@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://californiataxcalculators.com',
+  siteUrl: 'https://www.californiataxcalculators.com',
   generateRobotsTxt: true, // ستقوم المكتبة تلقائياً بربط الخريطة داخل robots.txt
   exclude: ['/404'], // استبعاد صفحات الأخطاء
   changefreq: 'weekly',
