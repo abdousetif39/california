@@ -93,7 +93,7 @@ export default function Home() {
 		<meta property="og:image" content="https://californiataxcalculators.com/og-image.jpg" />
 		<meta property="og:url" content="https://californiataxcalculators.com/" />
 		<meta property="og:type" content="website" />
-        <link rel="canonical" href="https://californiataxcalculators.com/" />
+        <link rel="canonical" href="https://www.californiataxcalculators.com/" />
         
         <meta name="robots" content="index, follow" />
         

@@ -1,3 +1,16 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "californiataxcalculators.com"
+        }
+      ],
+      "destination": "https://www.californiataxcalculators.com/:path*",
+      "permanent": true
+    }
+  ]
 }
