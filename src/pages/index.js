@@ -96,7 +96,7 @@ export default function Home() {
         
         <meta name="robots" content="index, follow" />
         
-		<!-- ✅ Twitter Cards -->
+		{/* ✅ Twitter Cards */}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="California Tax Calculator 2026 | Paycheck & Income Estimator" />
 <meta name="twitter:description" content="Free and accurate California tax calculator for 2026. Estimate your net pay, federal tax, state tax, and FICA withholdings." />
