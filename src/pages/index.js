@@ -9,6 +9,7 @@ import citiesData from '../data/ca-cities.json';
 export default function Home() {
   
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isClient, setIsClient] = useState(false);
   const [timeZone, setTimeZone] = useState('');
 
   const [grossIncome, setGrossIncome] = useState(75000);
@@ -19,7 +20,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    
+    setIsClient(true);
     try { 
       const resolved = Intl.DateTimeFormat().resolvedOptions().timeZone; 
       setTimeZone(resolved.replace('_', ' ')); 
@@ -150,7 +151,12 @@ export default function Home() {
             <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-medium border border-white/20 shadow-lg flex items-center gap-2">
                 <Icons.Clock />
                 <span>
-  {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+  {isClient && (
+    <>
+      {currentTime.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })} • 
+      {currentTime.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
+    </>
+  )}
 </span>
             </div>
 			{ timeZone && <span className="text-[10px] text-blue-200 mt-1 mr-2">{timeZone}</span>}
